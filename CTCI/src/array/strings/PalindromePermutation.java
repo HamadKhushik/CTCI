@@ -74,14 +74,30 @@ public class PalindromePermutation {
 					isOdd--;
 				}
 			}
-
 		}
 		return isOdd <= 1;
 	}
 
+	// Solution using the bit vector
 	public static boolean checkPalindromPermutationBitVector(String str) {
 
-		return false;
+		if (str.length() < 2) {
+			return false;
+		}
+		str = str.toLowerCase();
+
+		int bitVector = 0;
+		int characterLength = 26;
+
+		for (char ch : str.toCharArray()) {
+			int index = ch - 'a';
+			if (index >= 0 && index < characterLength) {
+				int bitMask = 1 << index;
+				bitVector ^= bitMask;
+			}
+		}
+
+		return (bitVector & (bitVector - 1)) == 0;
 	}
 
 }
