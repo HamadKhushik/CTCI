@@ -3,10 +3,10 @@ package array.strings;
 public class RotateImage {
 
 	/*
-	 * Leetcode solution take transpose of the image first and then flip the matrix
-	 * horizontally, that should give us our required rotated matrix -> flip the
-	 * matrix horizontally using the two pointer approach Assumption -> this is a
-	 * nxn matrix (square matrix)
+	 * Leetcode solution take transpose of the image/matrix first and then flip the
+	 * matrix horizontally(for clockwise rotation), that should give us our required
+	 * rotated matrix -> flip the matrix horizontally using the two pointer approach
+	 * Assumption -> this is a nxn matrix (square matrix)
 	 */
 	public static void rotateImage(int[][] matrix) {
 
@@ -36,5 +36,47 @@ public class RotateImage {
 				matrix[i][n - 1 - j] = temp;
 			}
 		}
+	}
+
+	/*
+	 * rotates an image/matrix clockwise layer by layer in place stack overflow link
+	 * below for more information
+	 * https://stackoverflow.com/questions/25882480/rotating-a-nxn-matrix-in-java
+	 */
+	public static void rotateImageLayerByLayer(int[][] matrix) {
+
+		int n = matrix.length;
+		int temp = 0;
+
+		if (n == 0 || n != matrix[0].length) {
+			return;
+		}
+
+		for (int layer = 0; layer < n / 1; layer++) {
+
+			// last row/column in that particular layer
+			int last = n - 1 - layer;
+			for (int i = layer; i < last; i++) {
+
+				// its used to find the particular element within the layer
+				int offset = i - layer;
+
+				// top
+				temp = matrix[layer][i];
+
+				// left -> top
+				matrix[layer][i] = matrix[last - offset][layer];
+
+				// bottom -> left
+				matrix[last - offset][layer] = matrix[last][last - offset];
+
+				// right -> bottom
+				matrix[last][last - offset] = matrix[i][last];
+
+				// top -> right
+				matrix[i][last] = temp;
+			}
+		}
+
 	}
 }
