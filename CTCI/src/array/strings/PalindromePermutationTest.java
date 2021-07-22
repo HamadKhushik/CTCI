@@ -45,4 +45,13 @@ public class PalindromePermutationTest {
 		assertEquals(true, PalindromePermutation.isPermutationOfPalindrome(s4));
 		assertEquals(false, PalindromePermutation.isPermutationOfPalindrome(empty));
 	}
+
+	@Test
+	public void isPermutationOfPalindromeBitVectorTest() {
+		assertEquals(true, PalindromePermutation.checkPalindromPermutationBitVector(s1));
+		assertEquals(false, PalindromePermutation.checkPalindromPermutationBitVector(s2));
+		assertEquals(true, PalindromePermutation.checkPalindromPermutationBitVector(s3));
+		assertEquals(true, PalindromePermutation.checkPalindromPermutationBitVector(s4));
+		assertEquals(false, PalindromePermutation.checkPalindromPermutationBitVector(empty));
+	}
 }
