@@ -2,6 +2,9 @@ package linkedllist;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,6 +12,7 @@ import org.junit.Test;
 public class NodeTest {
 
 	Node linkedList;
+	List<Integer> list;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -20,21 +24,28 @@ public class NodeTest {
 		linkedList.appendAtTail(1);
 		linkedList.appendAtTail(2);
 		linkedList.appendAtTail(0);
+		list = new ArrayList<Integer>();
+		list.add(0);
+		list.add(1);
+		list.add(2);
+		list.add(0);
 	}
 
 	@Test
 	public void appendAtTailTest() {
 
-		assertEquals(4, linkedList.getSize());
+		assertEquals(Node.createLinkedList(list), linkedList);
 		linkedList.appendAtTail(4);
-		assertEquals(5, linkedList.getSize());
+		list.add(4);
+		assertEquals(Node.createLinkedList(list), linkedList);
 
 	}
 
 	@Test
 	public void deleteNodeTest() {
-		linkedList.deleteNode(0);
-		assertEquals(3, linkedList.getSize());
+		linkedList.appendAtTail(4);
+		linkedList = linkedList.deleteNode(4, 4);
+		assertEquals(Node.createLinkedList(list), linkedList);
 	}
 
 }
