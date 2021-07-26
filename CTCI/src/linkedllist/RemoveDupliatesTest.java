@@ -75,4 +75,14 @@ public class RemoveDupliatesTest {
 		assertEquals(Node.createLinkedList(list), linkedList);
 	}
 
+	@Test
+	public void removeDupsNoBufferTest() {
+		RemoveDuplicates rd = new RemoveDuplicates();
+		assertEquals(Node.createLinkedList(list), linkedList);
+		rd.removeDupsNoBuffer(linkedList);
+		list.remove(5);
+		list.remove(1);
+		assertEquals(Node.createLinkedList(list), linkedList);
+	}
+
 }

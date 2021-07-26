@@ -29,7 +29,10 @@ public class RemoveDuplicates {
 		}
 	}
 
-	// using Book solution and LinkedList class
+	/*
+	 * using Book solution and LinkedList class this solution runs on O(n) time and
+	 * space
+	 */
 	public void removeDupsBook(List<Integer> list) {
 
 		Set<Integer> set = new HashSet<Integer>();
@@ -57,6 +60,29 @@ public class RemoveDuplicates {
 				previous = n;
 			}
 			n = n.next;
+		}
+	}
+
+	/*
+	 * Book solution using nested loop runs in O(n^2) time and O(1) space
+	 */
+	public void removeDupsNoBuffer(Node head) {
+
+		Node current = head;
+
+		while (current != null) {
+
+			// remove all future nodes with the same value as current node
+			Node runner = current;
+
+			while (runner.next != null) {
+				if (current.data == runner.next.data) {
+					runner.next = runner.next.next;
+				} else {
+					runner = runner.next;
+				}
+			}
+			current = current.next;
 		}
 	}
 }
