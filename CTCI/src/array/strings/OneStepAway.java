@@ -78,7 +78,7 @@ public class OneStepAway {
 
 				foundDifference = true;
 
-				// if replaed, move the shorter pointer
+				// if replaced, move the shorter pointer
 				if (s1.length() == s2.length()) {
 					index1++;
 				}
