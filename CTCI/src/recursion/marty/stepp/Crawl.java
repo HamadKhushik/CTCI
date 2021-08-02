@@ -9,25 +9,23 @@ import java.io.File;
  */
 public class Crawl {
 
-	private static void crawl(File file, int indent) {
+	private static void crawl(File file, String indent) {
 
 		// indentation
-		for (int i = 0; i < 4 * indent; i++) {
-			System.out.print(" ");
-		}
+		System.out.print(indent);
 		System.out.println(file.getName());
 		// recursive case
 		if (file.isDirectory()) {
 			File[] files = file.listFiles();
 			for (File tempFile : files) {
-				crawl(tempFile, indent + 1);
+				crawl(tempFile, indent + "    ");
 			}
 		}
 	}
 
 	public static void crawl(File file) {
 		// this public method hides the 'indentation' detail from the user
-		crawl(file, 0);
+		crawl(file, "");
 	}
 
 	public static void main(String[] args) {
