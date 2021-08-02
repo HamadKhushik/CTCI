@@ -32,7 +32,5 @@ public class ReverseLines {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
 	}
-
 }
