@@ -48,6 +48,9 @@ public class Node {
 
 	public static Node createLinkedList(List<Integer> list) {
 
+		if (list.size() < 1) {
+			return null;
+		}
 		Node linkedList = new Node(list.get(0));
 		for (int i = 1; i < list.size(); i++) {
 			linkedList.appendAtTail(list.get(i));
@@ -58,6 +61,9 @@ public class Node {
 
 	public void printList(Node head) {
 
+		if (head == null) {
+			return;
+		}
 		Node n = head;
 
 		while (n.next != null) {
