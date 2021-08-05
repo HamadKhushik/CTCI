@@ -13,6 +13,7 @@ public class Node {
 		data = d;
 	}
 
+	// add a Node at tail
 	public void appendAtTail(int d) {
 
 		Node end = new Node(d);
@@ -23,6 +24,18 @@ public class Node {
 		}
 
 		n.next = end;
+	}
+
+	// overloaded method to take in a node element
+	public void appendAtTail(Node d) {
+
+		Node n = this;
+
+		while (n.next != null) {
+			n = n.next;
+		}
+
+		n.next = d;
 	}
 
 	// delete a node from singly linked list
