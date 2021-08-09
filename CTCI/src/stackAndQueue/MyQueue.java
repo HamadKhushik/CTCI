@@ -51,13 +51,18 @@ public class MyQueue<T> {
 			return item;
 		}
 
-// return the first element in the list
+		// return the first element in the list
 		public T peek() {
 
 			if (first == null)
 				throw new NoSuchElementException();
 
 			return first.data;
+		}
+
+		public boolean isEmpty() {
+
+			return first == null;
 		}
 
 	}
