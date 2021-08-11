@@ -11,13 +11,13 @@ public class MyStack<T> {
 
 		private T data;
 		private StackNode<T> next;
+		private StackNode<T> top;
 
 		// constructor
 		public StackNode(T data) {
 			this.data = data;
+			top = this;
 		}
-
-		private StackNode<T> top;
 
 		// removes and returns the top element
 		public T pop() {
@@ -50,7 +50,7 @@ public class MyStack<T> {
 		}
 
 		public boolean isEmpty() {
-			return top == null;
+			return top == null || data == null;
 		}
 	}
 
