@@ -12,11 +12,13 @@ public class MyStack<T> {
 		private T data;
 		private StackNode<T> next;
 		private StackNode<T> top;
+		private int size;
 
 		// constructor
 		public StackNode(T data) {
 			this.data = data;
 			top = this;
+			size = 0;
 		}
 
 		// removes and returns the top element
@@ -38,6 +40,7 @@ public class MyStack<T> {
 
 			node.next = top;
 			top = node;
+			size++;
 		}
 
 		// returns the element at the top of the stack
@@ -51,6 +54,10 @@ public class MyStack<T> {
 
 		public boolean isEmpty() {
 			return top == null || data == null;
+		}
+
+		public int size() {
+			return size;
 		}
 	}
 
