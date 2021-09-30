@@ -8,7 +8,7 @@ import java.util.EmptyStackException;
 public class MyStack2<T> {
 
 	int capacity;
-	int size;
+	int size; // number of elements in the stack
 	Node<T> top;
 
 	// constructor
@@ -17,6 +17,12 @@ public class MyStack2<T> {
 		this.capacity = capacity;
 		size = 0;
 		top = null;
+	}
+
+	// default constructor
+	public MyStack2() {
+
+		this(10);
 	}
 
 	/* push an element onto the stack */

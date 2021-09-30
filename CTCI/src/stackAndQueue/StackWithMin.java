@@ -2,12 +2,12 @@ package stackAndQueue;
 
 /*
  * 3.2 returns the minimum value in stack
- * -> stores the min value in of the stack in each node
+ * -> stores the min value of the stack in each node
  * -> uses 'n' extra integers to store 'n' min values
  */
 public class StackWithMin extends MyStack.StackNode<NodeWithMin> {
 
-	// construtor
+	// constructor
 	public StackWithMin(NodeWithMin data) {
 		super(data);
 	}
