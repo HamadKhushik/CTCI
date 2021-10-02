@@ -22,7 +22,7 @@ public class MyStack2<T> {
 	// default constructor
 	public MyStack2() {
 
-		this(10);
+		this(100);
 	}
 
 	/* push an element onto the stack */
@@ -61,6 +61,11 @@ public class MyStack2<T> {
 		return top.data;
 	}
 
+	@Override
+	public String toString() {
+		return "MyStack2 [top=" + top + "]";
+	}
+
 	/* check if the stack is at maximum capacity */
 	public boolean isFull() {
 		return size == capacity;
@@ -80,6 +85,11 @@ class Node<T> {
 
 	public Node(T value) {
 		this.data = value;
+	}
+
+	@Override
+	public String toString() {
+		return "Node [data=" + data + "]";
 	}
 
 }

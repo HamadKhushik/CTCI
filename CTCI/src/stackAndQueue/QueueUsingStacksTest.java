@@ -36,7 +36,6 @@ public class QueueUsingStacksTest {
 		assertEquals(queue.dequeue(), (Integer) 3);
 		assertEquals(queue.dequeue(), (Integer) 8);
 		assertEquals(queue.dequeue(), (Integer) 10);
-		assertEquals(queue.dequeue(), null);
 
 	}
 

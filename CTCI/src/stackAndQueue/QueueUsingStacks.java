@@ -2,7 +2,8 @@ package stackAndQueue;
 
 /*	3.4 Queue using two stacks
  * implementation of queue using two stacks
- * 
+ * Time complexity O(n) worst case
+ * Space complexity O(n) worst case (as only n elements will be saved at once)
  * */
 
 public class QueueUsingStacks<T> {
@@ -30,21 +31,7 @@ public class QueueUsingStacks<T> {
 	// elements are copied over to s2 and to element is removed
 	public T dequeue() {
 
-		if (!s2.isEmpty()) {
-			return s2.pop();
-		}
-
-		if (s1.isEmpty()) {
-			return null;
-		}
-
-		while (!s1.isEmpty()) {
-			try {
-				s2.push(s1.pop());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		shiftStacks();
 		return s2.pop();
 	}
 
@@ -52,4 +39,22 @@ public class QueueUsingStacks<T> {
 		return s1.size + s2.size;
 	}
 
+	public T peek() {
+		shiftStacks();
+		return s2.peek();
+	}
+
+	// helper method
+	private void shiftStacks() {
+
+		if (s2.isEmpty()) {
+			while (!s1.isEmpty()) {
+				try {
+					s2.push(s1.pop());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
