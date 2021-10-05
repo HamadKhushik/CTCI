@@ -55,4 +55,12 @@ public class GraphTest {
 
 	}
 
+	public static void main(String[] args) {
+		Graph graph = new Graph();
+		graph.constructGraph();
+
+		Node source = new Node(1);
+
+		System.out.println(source.getNeighbours());
+	}
 }

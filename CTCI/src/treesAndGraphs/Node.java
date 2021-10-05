@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class Node {
 
-	int id;
-	List<Node> neighbours;
+	private int id;
+	private List<Node> neighbours;
 
 	public Node(int id) {
 		this.id = id;

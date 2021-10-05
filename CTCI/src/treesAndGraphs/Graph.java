@@ -1,47 +1,37 @@
 package treesAndGraphs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /*
  * basic Graph implementation
  */
 public class Graph {
 
-	List<Node> vertices;
+	HashMap<Integer, Node> vertices;
 	int noOfVertices;
 	int noOfEdges;
 
 	public Graph() {
-		vertices = new ArrayList<Node>();
+		vertices = new HashMap<Integer, Node>();
 		noOfVertices = 0;
 		noOfEdges = 0;
 	}
 
 	public void addVertex(int v) {
 
-		Node vert = new Node(v);
-
-		if (vertices.contains(vert)) {
+		if (vertices.containsKey(v)) {
 			return;
 		}
-		vertices.add(vert);
+
+		Node vert = new Node(v);
+		vertices.put(v, vert);
 		noOfVertices++;
 	}
 
 	public boolean addEdge(int from, int to) {
 
-		Node source = null;
-		Node destination = null;
-		for (int i = 0; i < vertices.size(); i++) {
-			Node temp = vertices.get(i);
-			if (temp.getId() == from) {
-				source = temp;
-			}
-			if (temp.getId() == to) {
-				destination = temp;
-			}
-		}
+		Node source = vertices.get(from);
+		Node destination = vertices.get(to);
 
 		// edge can not be added if vertex do not exist
 		if (source == null || destination == null) {
@@ -54,11 +44,35 @@ public class Graph {
 
 		noOfEdges++;
 		return source.addNeighbours(destination);
+
+//		Node source = null;
+//		Node destination = null;
+//		for (int i = 0; i < vertices.size(); i++) {
+//			Node temp = vertices.get(i);
+//			if (temp.getId() == from) {
+//				source = temp;
+//			}
+//			if (temp.getId() == to) {
+//				destination = temp;
+//			}
+//		}
+//
+//		// edge can not be added if vertex do not exist
+//		if (source == null || destination == null) {
+//			System.out
+//					.println("Graph class: addEdge method. source " + from + " or destination " + to + " do not exist");
+//			return false;
+//		} else if (source.getNeighbours().contains(destination)) {
+//			return true;
+//		}
+//
+//		noOfEdges++;
+//		return source.addNeighbours(destination);
 	}
 
 	public void printGraph() {
 
-		for (Node curr : vertices) {
+		for (Node curr : vertices.values()) {
 
 			System.out.println("neighbours for Node: " + curr);
 			// System.out.println("curr neighbours: " + curr.getNeighbours());
@@ -70,7 +84,7 @@ public class Graph {
 		}
 	}
 
-	// so that i dont have to construct graph everytime for testing
+	//
 	public void constructGraph() {
 
 		this.addVertex(1);
@@ -100,7 +114,7 @@ public class Graph {
 		return noOfEdges;
 	}
 
-	public List<Node> getVertices() {
+	public HashMap<Integer, Node> getVertices() {
 		return vertices;
 	}
 
