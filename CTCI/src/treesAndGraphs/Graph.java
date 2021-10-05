@@ -118,4 +118,8 @@ public class Graph {
 		return vertices;
 	}
 
+	public Node getNode(int node) {
+		return vertices.get(node);
+	}
+
 }
