@@ -6,10 +6,15 @@ import java.util.List;
 /*
  * basic Node for graphs and trees
  */
+enum State {
+	UNVISITED, VISITED, VISITING
+}
+
 public class Node {
 
 	private int id;
 	private List<Node> neighbours;
+	public State nodeState;
 
 	public Node(int id) {
 		this.id = id;

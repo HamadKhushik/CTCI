@@ -117,31 +117,37 @@ public class RouteBetweenNodes {
 
 		// queue
 		LinkedList<Node> q = new LinkedList<Node>();
-		// visited
-		Set<Node> visited = new HashSet<Node>();
+
+		// set all the states to unvisited
+		for (Node u : graph.getVertices().values()) {
+			u.nodeState = State.UNVISITED;
+		}
 
 		Node start = graph.getNode(from);
 		Node end = graph.getNode(to);
 
+		start.nodeState = State.VISITING;
 		q.add(start);
-		visited.add(start);
+		Node u = null;
 
+		// algorithm
 		while (!q.isEmpty()) {
-			Node curr = q.removeFirst();
+			u = q.removeFirst();
 
-			if (curr != null) {
-				for (Node neighbour : curr.getNeighbours()) {
-					if (!visited.contains(neighbour)) {
+			if (u != null) {
+				for (Node neighbour : u.getNeighbours()) {
+					if (neighbour.nodeState == State.UNVISITED) {
 						if (neighbour.equals(end)) {
 							return true;
 						} else {
 							q.add(neighbour);
-							visited.add(neighbour);
+							neighbour.nodeState = State.VISITING;
 						}
 					}
 				}
 			}
 		}
+		u.nodeState = State.VISITED;
 		return false;
 	}
 }
