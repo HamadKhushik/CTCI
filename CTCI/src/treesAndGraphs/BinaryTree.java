@@ -7,6 +7,9 @@ public class BinaryTree<T extends Comparable<T>> {
 
 	private BinaryTreeNode<T> root;
 
+	// constant used for spacing to print tree
+	static final int COUNT = 10;
+
 	public BinaryTree(T value) {
 
 		root = new BinaryTreeNode<T>(value);
@@ -21,11 +24,11 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 
 		// if value is smaller than current
-		if (current.getData().compareTo(value) < 0) {
+		if (current.getData().compareTo(value) > 0) {
 			current.setLeft(addRecursive(current.getLeft(), value));
 		}
 		// if value is greater than current
-		else if (current.getData().compareTo(value) > 0) {
+		else if (current.getData().compareTo(value) < 0) {
 			current.setRight(addRecursive(current.getRight(), value));
 		}
 		// node/value already exists
@@ -55,5 +58,43 @@ public class BinaryTree<T extends Comparable<T>> {
 		bt.add(9);
 
 		return bt;
+	}
+
+	// wrapper for print2DTree method
+	public void printTree(BinaryTreeNode<T> root) {
+
+		print2DTree(root, 0);
+
+	}
+
+	// helper method to print tree recursively
+	public void print2DTree(BinaryTreeNode<T> root, int space) {
+
+		if (root == null) {
+			return;
+		}
+
+		// distance between levels
+		space += COUNT;
+
+		// right child first
+		print2DTree(root.getRight(), space);
+
+		System.out.print("\n");
+		for (int i = COUNT; i < space; i++) {
+			System.out.print(" ");
+		}
+		System.out.print(root.getData() + "\n");
+
+		// left child
+		print2DTree(root.getLeft(), space);
+	}
+
+	public static void main(String[] args) {
+
+		BinaryTree<Integer> bt = new BinaryTree<Integer>(null);
+		bt = bt.createBinaryTree();
+
+		bt.printTree(bt.root);
 	}
 }
