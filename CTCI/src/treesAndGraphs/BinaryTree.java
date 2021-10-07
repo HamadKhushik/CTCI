@@ -1,5 +1,9 @@
 package treesAndGraphs;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
  * implementation of binary tree using recursion 
  */
@@ -19,6 +23,11 @@ public class BinaryTree<T extends Comparable<T>> {
 
 		root = new BinaryTreeNode<T>();
 	}
+
+//	// constructor overload
+//	public BinaryTree(BinaryTreeNode<T> node) {
+//		root = node;
+//	}
 
 	public BinaryTreeNode<T> getRoot() {
 		return root;
@@ -110,6 +119,31 @@ public class BinaryTree<T extends Comparable<T>> {
 		System.out.print(node.getData() + " ");
 	}
 
+	// level order traversal
+	public void levelOrder(BinaryTreeNode<T> node) {
+
+		Queue<BinaryTreeNode<T>> queue = new LinkedList<BinaryTreeNode<T>>();
+		HashSet<BinaryTreeNode<T>> visited = new HashSet<BinaryTreeNode<T>>();
+
+		queue.add(node);
+
+		while (!queue.isEmpty()) {
+
+			BinaryTreeNode<T> curr = queue.remove();
+
+			if (!visited.contains(curr)) {
+				if (curr.getLeft() != null) {
+					queue.add(curr.getLeft());
+				}
+				if (curr.getRight() != null) {
+					queue.add(curr.getRight());
+				}
+				visited.add(curr);
+				System.out.print(curr.getData() + " ");
+			}
+		}
+	}
+
 	// creates a Binary Tree
 	public BinaryTree<Integer> createBinaryTree() {
 
@@ -166,6 +200,9 @@ public class BinaryTree<T extends Comparable<T>> {
 
 		// bt.preOrder(bt.root);
 
-		bt.postOrder(bt.root);
+		// bt.postOrder(bt.root);
+
+		bt.levelOrder(bt.root);
+
 	}
 }
