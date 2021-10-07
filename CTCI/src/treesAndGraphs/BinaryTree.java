@@ -15,6 +15,19 @@ public class BinaryTree<T extends Comparable<T>> {
 		root = new BinaryTreeNode<T>(value);
 	}
 
+	public BinaryTree() {
+
+		root = new BinaryTreeNode<T>();
+	}
+
+	public BinaryTreeNode<T> getRoot() {
+		return root;
+	}
+
+	public void setRoot(BinaryTreeNode<T> root) {
+		this.root = root;
+	}
+
 	// adds a node to tree recursively
 	private BinaryTreeNode<T> addRecursive(BinaryTreeNode<T> current, T value) {
 
@@ -24,11 +37,11 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 
 		// if value is smaller than current
-		if (current.getData().compareTo(value) > 0) {
+		if (value.compareTo(current.getData()) < 0) {
 			current.setLeft(addRecursive(current.getLeft(), value));
 		}
 		// if value is greater than current
-		else if (current.getData().compareTo(value) < 0) {
+		else if (value.compareTo(current.getData()) > 0) {
 			current.setRight(addRecursive(current.getRight(), value));
 		}
 		// node/value already exists
@@ -43,6 +56,58 @@ public class BinaryTree<T extends Comparable<T>> {
 	public void add(T value) {
 
 		root = addRecursive(root, value);
+	}
+
+	// pre-order traversal
+	public void preOrder(BinaryTreeNode<T> node) {
+
+		if (node == null) {
+			return;
+		}
+
+		// visit root
+		System.out.print(node.getData() + " ");
+
+		// left subtree
+		preOrder(node.getLeft());
+
+		// right subtree
+		preOrder(node.getRight());
+
+	}
+
+	// in-order tree traversal
+	public void inOrder(BinaryTreeNode<T> node) {
+
+		if (node == null) {
+			return;
+		}
+
+		// visit left subtree
+		inOrder(node.getLeft());
+
+		// visit root
+		System.out.print(node.getData() + " ");
+
+		// visit right sub-tree
+		inOrder(node.getRight());
+	}
+
+	// post-order traversal
+	public void postOrder(BinaryTreeNode<T> node) {
+
+		if (node == null) {
+			return;
+		}
+
+		// visit left subtree
+		postOrder(node.getLeft());
+
+		// visit right subtree
+		postOrder(node.getRight());
+
+		// visit root
+		System.out.print(node.getData() + " ");
 	}
 
 	// creates a Binary Tree
@@ -96,5 +161,11 @@ public class BinaryTree<T extends Comparable<T>> {
 		bt = bt.createBinaryTree();
 
 		bt.printTree(bt.root);
+
+		// bt.inOrder(bt.root);
+
+		// bt.preOrder(bt.root);
+
+		bt.postOrder(bt.root);
 	}
 }
