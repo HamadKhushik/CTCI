@@ -8,12 +8,14 @@ public class BinaryTreeNode<T extends Comparable<T>> {
 	private T data;
 	private BinaryTreeNode<T> left;
 	private BinaryTreeNode<T> right;
+	private BinaryTreeNode<T> parent;
 
 	public BinaryTreeNode(T data) {
 
 		this.data = data;
 		left = null;
 		right = null;
+		parent = null;
 	}
 
 	public BinaryTreeNode() {
@@ -29,6 +31,14 @@ public class BinaryTreeNode<T extends Comparable<T>> {
 
 	public void setData(T data) {
 		this.data = data;
+	}
+
+	public BinaryTreeNode<T> getParent() {
+		return parent;
+	}
+
+	public void setParent(BinaryTreeNode<T> parent) {
+		this.parent = parent;
 	}
 
 	public BinaryTreeNode<T> getLeft() {

@@ -45,13 +45,21 @@ public class BinaryTree<T extends Comparable<T>> {
 			return new BinaryTreeNode<T>(value);
 		}
 
-		// if value is smaller than current
+		// if value is smaller than current, recurse down the left subtree
 		if (value.compareTo(current.getData()) < 0) {
-			current.setLeft(addRecursive(current.getLeft(), value));
+			BinaryTreeNode<T> leftChild = addRecursive(current.getLeft(), value);
+			current.setLeft(leftChild);
+
+			// set current Node as parent to leftChild
+			leftChild.setParent(current);
 		}
 		// if value is greater than current
 		else if (value.compareTo(current.getData()) > 0) {
-			current.setRight(addRecursive(current.getRight(), value));
+			BinaryTreeNode<T> rightChild = addRecursive(current.getRight(), value);
+			current.setRight(rightChild);
+
+			// set current Node as parent to leftChild
+			rightChild.setParent(current);
 		}
 		// node/value already exists
 		else {
