@@ -31,8 +31,40 @@ public class CheckBalanceTest {
 		assertEquals(true, checkBalance);
 
 		bt.add(11);
-		bt.printTree(btn);
+//		bt.printTree(btn);
 		checkBalance = cb.isBalanced(btn);
+		assertEquals(false, checkBalance);
+
+	}
+
+	@Test
+	public void isBalanedEfficientTest() {
+		boolean checkBalance = cb.isBalancedEfficient(btn);
+		assertEquals(true, checkBalance);
+
+		bt.add(2);
+		checkBalance = cb.isBalancedEfficient(btn);
+//		bt.printTree(btn);
+		assertEquals(true, checkBalance);
+
+		bt.add(1);
+		checkBalance = cb.isBalancedEfficient(btn);
+//		bt.printTree(btn);
+		assertEquals(false, checkBalance);
+
+		bt.add(0);
+		checkBalance = cb.isBalancedEfficient(btn);
+//		bt.printTree(btn);
+		assertEquals(false, checkBalance);
+
+		bt.add(10);
+		checkBalance = cb.isBalancedEfficient(btn);
+//		bt.printTree(btn);
+		assertEquals(false, checkBalance);
+
+		bt.add(11);
+		checkBalance = cb.isBalancedEfficient(btn);
+		bt.printTree(btn);
 		assertEquals(false, checkBalance);
 
 	}

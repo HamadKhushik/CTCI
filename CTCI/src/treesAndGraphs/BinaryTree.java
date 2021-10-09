@@ -41,7 +41,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	private BinaryTreeNode<T> addRecursive(BinaryTreeNode<T> current, T value) {
 
 		// if current == null, means we have reached leaf node
-		if (current == null) {
+		if (current == null || current.getData() == null) {
 			return new BinaryTreeNode<T>(value);
 		}
 

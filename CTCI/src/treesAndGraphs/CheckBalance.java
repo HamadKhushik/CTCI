@@ -38,4 +38,50 @@ public class CheckBalance {
 		return isBalanced(root.getLeft()) && isBalanced(root.getRight());
 	}
 
+	// calculates height and checks if tree is balanced
+	// return Integer.MIN if not balanced
+	public int checkHeightEfficient(BinaryTreeNode<Integer> root) {
+
+		// base case
+		if (root == null) {
+			return -1;
+		}
+
+		int leftHeight = checkHeightEfficient(root.getLeft());
+		// pass error up (to the caller)
+		if (leftHeight == Integer.MIN_VALUE) {
+			return Integer.MIN_VALUE;
+		}
+
+		// pass error to the caller
+		int rightHeight = checkHeightEfficient(root.getRight());
+		if (leftHeight == Integer.MIN_VALUE) {
+			return Integer.MIN_VALUE;
+		}
+
+		// if unbalanced, return error
+		if (Math.abs(leftHeight - rightHeight) > 1) {
+			return Integer.MIN_VALUE;
+		}
+
+		return Math.max(checkHeightEfficient(root.getLeft()), checkHeightEfficient(root.getRight())) + 1;
+	}
+
+	public boolean isBalancedEfficient(BinaryTreeNode<Integer> root) {
+
+		// base case
+		if (root == null) {
+			return true;
+		}
+
+		if (checkHeightEfficient(root) == Integer.MIN_VALUE) {
+			return false;
+		} else {
+			checkHeightEfficient(root.getLeft());
+			checkHeightEfficient(root.getRight());
+		}
+
+		return true;
+	}
+
 }
