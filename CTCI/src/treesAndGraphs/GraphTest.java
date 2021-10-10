@@ -55,12 +55,13 @@ public class GraphTest {
 
 	}
 
-	public static void main(String[] args) {
-		Graph graph = new Graph();
-		graph.constructGraph();
+	@Test
+	public void constructGraphTest() {
+		System.out.println("**************** Graph Test ********************");
 
-		Node source = new Node(1);
-
-		System.out.println(source.getNeighbours());
+		graph = new Graph();
+		graph.construtGraph("src\\treesAndGraphs\\Util\\defaultGraph.txt");
+		assertEquals(7, graph.getNoOfVertices());
+		assertEquals(7, graph.getNoOfEdges());
 	}
 }

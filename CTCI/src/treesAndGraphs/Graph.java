@@ -1,6 +1,9 @@
 package treesAndGraphs;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /*
  * basic Graph implementation
@@ -44,30 +47,6 @@ public class Graph {
 
 		noOfEdges++;
 		return source.addNeighbours(destination);
-
-//		Node source = null;
-//		Node destination = null;
-//		for (int i = 0; i < vertices.size(); i++) {
-//			Node temp = vertices.get(i);
-//			if (temp.getId() == from) {
-//				source = temp;
-//			}
-//			if (temp.getId() == to) {
-//				destination = temp;
-//			}
-//		}
-//
-//		// edge can not be added if vertex do not exist
-//		if (source == null || destination == null) {
-//			System.out
-//					.println("Graph class: addEdge method. source " + from + " or destination " + to + " do not exist");
-//			return false;
-//		} else if (source.getNeighbours().contains(destination)) {
-//			return true;
-//		}
-//
-//		noOfEdges++;
-//		return source.addNeighbours(destination);
 	}
 
 	public void printGraph() {
@@ -104,6 +83,27 @@ public class Graph {
 		this.addEdge(5, 1);
 		this.addEdge(1, 5);
 
+	}
+
+	// construct graph from file
+	public void construtGraph(String filename) {
+
+		try {
+			File f = new File(filename);
+			Scanner scanner = new Scanner(f);
+
+			while (scanner.hasNextLine()) {
+				int vert1 = scanner.nextInt();
+				int vert2 = scanner.nextInt();
+				System.out.println(vert1 + " vert2: " + vert2);
+				this.addVertex(vert1);
+				this.addVertex(vert2);
+				this.addEdge(vert1, vert2);
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int getNoOfVertices() {
