@@ -93,12 +93,15 @@ public class Graph {
 			Scanner scanner = new Scanner(f);
 
 			while (scanner.hasNextLine()) {
-				int vert1 = scanner.nextInt();
-				int vert2 = scanner.nextInt();
-				System.out.println(vert1 + " vert2: " + vert2);
+				String[] line = scanner.nextLine().split(" ");
+				int vert1 = Integer.valueOf(line[0]);
 				this.addVertex(vert1);
-				this.addVertex(vert2);
-				this.addEdge(vert1, vert2);
+
+				if (line.length > 1) {
+					int vert2 = Integer.valueOf(line[1]);
+					this.addVertex(vert2);
+					this.addEdge(vert1, vert2);
+				}
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
