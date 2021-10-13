@@ -93,15 +93,24 @@ public class Graph {
 			Scanner scanner = new Scanner(f);
 
 			while (scanner.hasNextLine()) {
-				String[] line = scanner.nextLine().split(" ");
-				int vert1 = Integer.valueOf(line[0]);
+				String str = scanner.nextLine();
+
+				// if line is empty
+				if (str.length() == 0) {
+					continue;
+				}
+
+				String[] line = str.split(" ");
+
+				int vert1 = Integer.parseInt(line[0]);
 				this.addVertex(vert1);
 
-				if (line.length > 1) {
+				if (line.length > 1 && line[1] != null) {
 					int vert2 = Integer.valueOf(line[1]);
 					this.addVertex(vert2);
 					this.addEdge(vert1, vert2);
 				}
+
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -124,5 +133,4 @@ public class Graph {
 	public Node getNode(int node) {
 		return vertices.get(node);
 	}
-
 }
