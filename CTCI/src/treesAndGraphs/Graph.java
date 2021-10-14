@@ -46,6 +46,8 @@ public class Graph {
 		}
 
 		noOfEdges++;
+		int destEdges = destination.getIncomingEdges();
+		destination.setIncomingEdges(destEdges++);
 		return source.addNeighbours(destination);
 	}
 

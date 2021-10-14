@@ -56,11 +56,38 @@ public class BuildOrder {
 	 * are added first
 	 * 
 	 * two dimensional array is passed as arguments for dependencies edge a -> b
-	 * represents a must be built before b. in other words b is dependent on a
+	 * represents 'a' must be built before 'b'. in other words 'b' is dependent on
+	 * 'a'
 	 */
-	public List<Integer> buildOrderBook(Integer[] projects, Integer[][] dependenies) {
+	public List<Integer> buildOrderBook(Integer[] projects, Integer[][] dependencies) {
+
+		List<Integer> result = new ArrayList<Integer>();
+
+		// build graph
+		Graph graph = buildGraph(dependencies);
+
+		addNodesWithNoDependency(result, graph);
+
+		int toBeProcessed = 0;
+
+		while (toBeProcessed <= graph.getNoOfVertices()) {
+
+		}
 
 		return null;
+	}
+
+	/*
+	 * adds the nodes with no dependency(nodes with no incoming edges) to the result
+	 * List
+	 */
+	public void addNodesWithNoDependency(List<Integer> result, Graph g) {
+
+		for (Node node : g.getVertices().values()) {
+			if (node.getIncomingEdges() == 0) {
+				result.add(node.getId());
+			}
+		}
 	}
 
 	public Graph buildGraph(Integer[][] dependencies) {
@@ -69,6 +96,7 @@ public class BuildOrder {
 
 		for (Integer[] i : dependencies) {
 
+			// i[1] is dependent on i[0] means i[0] must be built first
 			graph.addVertex(i[0]);
 			graph.addVertex(i[1]);
 			graph.addEdge(i[0], i[1]);
@@ -76,5 +104,4 @@ public class BuildOrder {
 
 		return graph;
 	}
-
 }

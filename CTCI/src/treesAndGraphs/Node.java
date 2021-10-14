@@ -15,10 +15,20 @@ public class Node {
 	private int id;
 	private List<Node> neighbours;
 	public State nodeState;
+	private int incomingEdges;
 
 	public Node(int id) {
 		this.id = id;
 		neighbours = new ArrayList<Node>();
+		incomingEdges = 0;
+	}
+
+	public int getIncomingEdges() {
+		return incomingEdges;
+	}
+
+	public void setIncomingEdges(int incomingEdges) {
+		this.incomingEdges = incomingEdges;
 	}
 
 	public int getId() {
