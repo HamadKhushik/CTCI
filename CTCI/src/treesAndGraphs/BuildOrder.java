@@ -59,9 +59,9 @@ public class BuildOrder {
 	 * represents 'a' must be built before 'b'. in other words 'b' is dependent on
 	 * 'a'
 	 */
-	public List<Integer> buildOrderBook(Integer[] projects, Integer[][] dependencies) {
+	public List<Node> buildOrderBook(Integer[] projects, Integer[][] dependencies) {
 
-		List<Integer> result = new ArrayList<Integer>();
+		List<Node> result = new ArrayList<Node>();
 
 		// build graph
 		Graph graph = buildGraph(dependencies);
@@ -70,22 +70,47 @@ public class BuildOrder {
 
 		int toBeProcessed = 0;
 
-		while (toBeProcessed <= graph.getNoOfVertices()) {
+		while (toBeProcessed < graph.getNoOfVertices()) {
 
+			/*
+			 * check for cyclic dependency if toBeProcessed >= result.size() means there are
+			 * no nodes without dependency - in other words every node depends on other node
+			 * i-e cyclic dependency
+			 */
+			if (toBeProcessed >= result.size()) {
+				return null;
+			}
+
+			// List result only contains nodes with no dependency
+			Node current = result.get(toBeProcessed);
+
+			// check for cyclic dependency
+//			if (current == null) {
+//				return null;
+//			}
+
+			for (Node node : current.getNeighbours()) {
+
+				int incomingEdges = node.getIncomingEdges();
+				node.setIncomingEdges(--incomingEdges);
+			}
+
+			addNodesWithNoDependency(result, graph);
+			toBeProcessed++;
 		}
 
-		return null;
+		return result;
 	}
 
 	/*
 	 * adds the nodes with no dependency(nodes with no incoming edges) to the result
 	 * List
 	 */
-	public void addNodesWithNoDependency(List<Integer> result, Graph g) {
+	public void addNodesWithNoDependency(List<Node> result, Graph g) {
 
 		for (Node node : g.getVertices().values()) {
-			if (node.getIncomingEdges() == 0) {
-				result.add(node.getId());
+			if (node.getIncomingEdges() == 0 && !result.contains(node)) {
+				result.add(node);
 			}
 		}
 	}
