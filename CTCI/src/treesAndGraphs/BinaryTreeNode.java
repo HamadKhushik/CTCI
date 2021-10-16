@@ -80,22 +80,22 @@ public class BinaryTreeNode<T extends Comparable<T>> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BinaryTreeNode other = (BinaryTreeNode) obj;
+		BinaryTreeNode<T> other = (BinaryTreeNode<T>) obj;
 		if (data == null) {
 			if (other.data != null)
 				return false;
 		} else if (!data.equals(other.data))
 			return false;
-		if (left == null) {
-			if (other.left != null)
-				return false;
-		} else if (!left.equals(other.left))
-			return false;
-		if (right == null) {
-			if (other.right != null)
-				return false;
-		} else if (!right.equals(other.right))
-			return false;
+//		if (left == null) {
+//			if (other.left != null)
+//				return false;
+//		} else if (!left.equals(other.left))
+//			return false;
+//		if (right == null) {
+//			if (other.right != null)
+//				return false;
+//		} else if (!right.equals(other.right))
+//			return false;
 		return true;
 	}
 

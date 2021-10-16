@@ -75,6 +75,41 @@ public class BinaryTree<T extends Comparable<T>> {
 		root = addRecursive(root, value);
 	}
 
+	// add nodes on the left
+	public void addLeft(BinaryTreeNode<T> node, T value) {
+
+		if (covers(node, value)) {
+			return;
+		}
+
+		BinaryTreeNode<T> btn = new BinaryTreeNode<T>(value);
+		node.setLeft(btn);
+	}
+
+	// add nodes on the right
+	public void addRight(BinaryTreeNode<T> node, T value) {
+
+		if (covers(node, value)) {
+			return;
+		}
+
+		BinaryTreeNode<T> btn = new BinaryTreeNode<T>(value);
+		node.setRight(btn);
+	}
+
+	// checks if a node exists in a tree
+	public boolean covers(BinaryTreeNode<T> root, T value) {
+
+		if (root == null) {
+			return false;
+		}
+
+		if (root.getData() == value)
+			return true;
+
+		return covers(root.getLeft(), value) || covers(root.getRight(), value);
+	}
+
 	// pre-order traversal
 	public void preOrder(BinaryTreeNode<T> node) {
 
@@ -195,22 +230,5 @@ public class BinaryTree<T extends Comparable<T>> {
 
 		// left child
 		print2DTree(root.getLeft(), space);
-	}
-
-	public static void main(String[] args) {
-
-		BinaryTree<Integer> bt = new BinaryTree<Integer>(null);
-		bt = bt.createBinaryTree();
-
-		bt.printTree(bt.root);
-
-		// bt.inOrder(bt.root);
-
-		// bt.preOrder(bt.root);
-
-		// bt.postOrder(bt.root);
-
-		bt.levelOrder(bt.root);
-
 	}
 }
