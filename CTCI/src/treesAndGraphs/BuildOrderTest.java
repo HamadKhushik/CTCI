@@ -33,7 +33,7 @@ public class BuildOrderTest {
 	public void processOrderTest() {
 
 		result = bo.sortOrder(graph);
-		System.out.println("processOrderTest " + result);
+		System.out.println("processOrderTest 1 " + result);
 		assertEquals((Integer) 2, result.get(0));
 		assertEquals((Integer) 5, result.get(1));
 		assertEquals((Integer) 1, result.get(2));
@@ -44,7 +44,7 @@ public class BuildOrderTest {
 		result = new ArrayList<Integer>();
 		graph.construtGraph("src\\treesAndGraphs\\Util\\testCaseBook.txt");
 		result = bo.sortOrder(graph);
-		System.out.println("processOrderTest " + result);
+		System.out.println("processOrderTest 2 " + result);
 		assertEquals((Integer) 6, result.get(0));
 		assertEquals((Integer) 5, result.get(1));
 		assertEquals((Integer) 2, result.get(2));
@@ -63,7 +63,7 @@ public class BuildOrderTest {
 		graph = new Graph();
 		graph = bo.buildGraph(dependencies);
 		dependencyOrder = bo.buildOrderBook(projects, dependencies);
-		System.out.println("dependeny Order " + dependencyOrder);
+		System.out.println("buildOrderBook " + dependencyOrder);
 
 		assertEquals(4, dependencyOrder.get(0).getId());
 		assertEquals(6, dependencyOrder.get(1).getId());
@@ -77,9 +77,52 @@ public class BuildOrderTest {
 		// cyclic dependency check
 		Integer[][] dependencies2 = { { 1, 2 }, { 2, 3 }, { 3, 1 } };
 		dependencyOrder = bo.buildOrderBook(project2, dependencies2);
+		System.out.println("buildOrderBook 2 " + dependencyOrder);
+		assertNull(dependencyOrder);
+
+	}
+
+	@Test
+	public void OrderProjectsTest() {
+
+		System.out.println("\n ***********Order Projects************");
+
+		graph = new Graph();
+		graph = bo.buildGraph(dependencies);
+		dependencyOrder = bo.orderProjects(projects, dependencies);
+		System.out.println("dependeny Order " + dependencyOrder);
+
+		assertEquals(6, dependencyOrder.get(0).getId());
+		assertEquals(4, dependencyOrder.get(1).getId());
+		assertEquals(7, dependencyOrder.get(2).getId());
+		assertEquals(3, dependencyOrder.get(3).getId());
+		assertEquals(2, dependencyOrder.get(4).getId());
+
+		graph = new Graph();
+		dependencyOrder = new ArrayList<Node>();
+		Integer[] project2 = { 1, 2, 3 };
+		// cyclic dependency check
+		Integer[][] dependencies2 = { { 1, 2 }, { 2, 3 }, { 3, 1 } };
+		dependencyOrder = bo.buildOrderBook(project2, dependencies2);
 		System.out.println("dependeny Order2 " + dependencyOrder);
 		assertNull(dependencyOrder);
 
+		graph = new Graph();
+		dependencyOrder = new ArrayList<Node>();
+		Integer[] project3 = { 1, 2, 3 };
+		// empty array check
+		Integer[][] dependencies3 = {};
+		dependencyOrder = bo.buildOrderBook(project3, dependencies3);
+		System.out.println("dependeny Order3 " + dependencyOrder);
+		assertNull(dependencyOrder);
+
+		graph = new Graph();
+		dependencyOrder = new ArrayList<Node>();
+		// cycle check
+		Integer[][] dependencies4 = { { 6, 3 }, { 6, 2 }, { 4, 7 }, { 3, 1 }, { 2, 1 }, { 1, 5 }, { 5, 1 } };
+		dependencyOrder = bo.buildOrderBook(projects, dependencies4);
+		System.out.println("dependeny Order3 " + dependencyOrder);
+		assertNull(dependencyOrder);
 	}
 
 }

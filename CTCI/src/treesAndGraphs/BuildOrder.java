@@ -19,7 +19,7 @@ public class BuildOrder {
 	 * solution order can be different depending on which node is visited first but
 	 * all the dependencies must be visited first
 	 * 
-	 * Topological sort based on dfs
+	 * Topological sort based on dfs - this solution does not detect cycles
 	 */
 	public List<Integer> sortOrder(Graph g) {
 
@@ -31,7 +31,7 @@ public class BuildOrder {
 				sortOrderUtil(node, visited, stack);
 			}
 		}
-		// pop the nodes to return the correct order
+		// pop the nodes to return the correct(Topological order) order
 		List<Integer> result = new ArrayList<Integer>();
 		while (!stack.isEmpty()) {
 			result.add(stack.pop());
@@ -66,6 +66,10 @@ public class BuildOrder {
 		// build graph
 		Graph graph = buildGraph(dependencies);
 
+		if (graph == null) {
+			return null;
+		}
+
 		addNodesWithNoDependency(result, graph);
 
 		int toBeProcessed = 0;
@@ -84,11 +88,6 @@ public class BuildOrder {
 			// List result only contains nodes with no dependency
 			Node current = result.get(toBeProcessed);
 
-			// check for cyclic dependency
-//			if (current == null) {
-//				return null;
-//			}
-
 			for (Node node : current.getNeighbours()) {
 
 				int incomingEdges = node.getIncomingEdges();
@@ -98,7 +97,6 @@ public class BuildOrder {
 			addNodesWithNoDependency(result, graph);
 			toBeProcessed++;
 		}
-
 		return result;
 	}
 
@@ -117,6 +115,10 @@ public class BuildOrder {
 
 	public Graph buildGraph(Integer[][] dependencies) {
 
+		if (dependencies.length == 0) {
+			return null;
+		}
+
 		Graph graph = new Graph();
 
 		for (Integer[] i : dependencies) {
@@ -128,5 +130,63 @@ public class BuildOrder {
 		}
 
 		return graph;
+	}
+
+	/*
+	 * Book solution based on dfs
+	 */
+
+	public List<Node> orderProjects(Integer[] projects, Integer[][] dependencies) {
+
+		Graph graph = buildGraph(dependencies);
+
+		setNodeStates(graph);
+
+		Stack<Node> stack = new Stack<Node>();
+
+		for (Node node : graph.getVertices().values()) {
+
+			if (node.getNodeState() == State.UNVISITED) {
+				if (!doDFS(node, stack)) {
+					return null;
+				}
+			}
+		}
+		List<Node> result = new ArrayList<Node>();
+		while (!stack.isEmpty()) {
+			result.add(stack.pop());
+		}
+		return result;
+	}
+
+	private boolean doDFS(Node n, Stack<Node> stack) {
+
+		// cycle check
+		if (n.getNodeState() == State.VISITING) {
+			return false;
+		}
+
+		// if node is unvisited, visit it and add it to stack
+		if (n.getNodeState() == State.UNVISITED) {
+			n.setNodeState(State.VISITING);
+			for (Node neighbour : n.getNeighbours()) {
+
+				if (!doDFS(neighbour, stack)) {
+					return false;
+				}
+			}
+			n.setNodeState(State.VISITED);
+			stack.push(n);
+		}
+
+		return true;
+	}
+
+	// set all node states to UNVISITED
+	private void setNodeStates(Graph g) {
+
+		for (Node n : g.getVertices().values()) {
+			n.setNodeState(State.UNVISITED);
+		}
 	}
 }

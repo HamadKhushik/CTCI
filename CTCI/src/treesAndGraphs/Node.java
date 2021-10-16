@@ -49,6 +49,14 @@ public class Node {
 		return true;
 	}
 
+	public State getNodeState() {
+		return nodeState;
+	}
+
+	public void setNodeState(State nodeState) {
+		this.nodeState = nodeState;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
