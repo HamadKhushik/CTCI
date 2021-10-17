@@ -28,14 +28,13 @@ public class LowestCommonAncesterTest {
 		bt.addRight(root, 13);
 		root = root.getRight();
 		bt.addLeft(root, 7);
-		bt.printTree(bt.getRoot());
+		// bt.printTree(bt.getRoot());
 	}
 
 	@Test
 	public void lcaTest() {
 		root = bt.getRoot();
-		BinaryTreeNode<Integer> ancester = lca.lca(root, new BinaryTreeNode<Integer>(6),
-				new BinaryTreeNode<Integer>(8));
+		BinaryTreeNode<Integer> ancester = lca.lca(root, bt.findNode(root, 6), bt.findNode(root, 8));
 		assertEquals(new BinaryTreeNode<Integer>(3), ancester);
 
 		ancester = lca.lca(root, new BinaryTreeNode<Integer>(2), new BinaryTreeNode<Integer>(11));
@@ -51,6 +50,29 @@ public class LowestCommonAncesterTest {
 		assertNull(ancester);
 
 		ancester = lca.lca(root, new BinaryTreeNode<Integer>(20), new BinaryTreeNode<Integer>(13));
+		assertNull(ancester);
+	}
+
+	@Test
+	public void commonAncesterTest() {
+		root = bt.getRoot();
+		bt.printTree(bt.getRoot());
+		BinaryTreeNode<Integer> ancester = lca.commonAncester(root, bt.findNode(root, 6), bt.findNode(root, 8));
+		assertEquals(new BinaryTreeNode<Integer>(3), ancester);
+
+		ancester = lca.commonAncester(root, bt.findNode(root, 11), bt.findNode(root, 2));
+		assertEquals(new BinaryTreeNode<Integer>(6), ancester);
+
+		ancester = lca.commonAncester(root, bt.findNode(root, 2), bt.findNode(root, 5));
+		assertEquals(new BinaryTreeNode<Integer>(6), ancester);
+
+		ancester = lca.commonAncester(root, bt.findNode(root, 8), bt.findNode(root, 7));
+		assertEquals(new BinaryTreeNode<Integer>(8), ancester);
+
+		ancester = lca.commonAncester(root, bt.findNode(root, 8), bt.findNode(root, 20));
+		assertNull(ancester);
+
+		ancester = lca.commonAncester(root, bt.findNode(root, 20), bt.findNode(root, 13));
 		assertNull(ancester);
 	}
 

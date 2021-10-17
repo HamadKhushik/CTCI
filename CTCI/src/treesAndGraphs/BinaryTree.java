@@ -83,6 +83,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 
 		BinaryTreeNode<T> btn = new BinaryTreeNode<T>(value);
+		btn.setParent(node);
 		node.setLeft(btn);
 	}
 
@@ -94,6 +95,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 
 		BinaryTreeNode<T> btn = new BinaryTreeNode<T>(value);
+		btn.setParent(node);
 		node.setRight(btn);
 	}
 
@@ -110,6 +112,23 @@ public class BinaryTree<T extends Comparable<T>> {
 		return covers(root.getLeft(), value) || covers(root.getRight(), value);
 	}
 
+	public BinaryTreeNode<T> findNode(BinaryTreeNode<T> root, T value) {
+
+		if (root == null) {
+			return null;
+		}
+
+		if (root.getData().equals(value)) {
+			return root;
+		} else {
+			BinaryTreeNode<T> foundNode = findNode(root.getLeft(), value);
+			if (foundNode == null) {
+				foundNode = findNode(root.getRight(), value);
+			}
+			return foundNode;
+		}
+	}
+
 	// pre-order traversal
 	public void preOrder(BinaryTreeNode<T> node) {
 
@@ -119,6 +138,7 @@ public class BinaryTree<T extends Comparable<T>> {
 
 		// visit root
 		System.out.print(node.getData() + " ");
+		System.out.println("parent" + node.getParent());
 
 		// left subtree
 		preOrder(node.getLeft());

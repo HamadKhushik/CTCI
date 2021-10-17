@@ -69,4 +69,56 @@ public class LowestCommonAncester {
 		return covers(root.getLeft(), node) || covers(root.getRight(), node);
 	}
 
+	/*
+	 * Lowest Common Ancester Book Solution similar solution as of intersection of
+	 * two linked lists traverse the trees at the same time and return when a common
+	 * node is found uses the parent link
+	 */
+
+	public BinaryTreeNode<Integer> commonAncester(BinaryTreeNode<Integer> root, BinaryTreeNode<Integer> n1,
+			BinaryTreeNode<Integer> n2) {
+
+		if (root == null || !covers(root, n1) || !covers(root, n2)) {
+			return null;
+		}
+
+		// find the difference in height of the trees
+		int delta = depth(n1) - depth(n2);
+		BinaryTreeNode<Integer> first = delta > 0 ? n2 : n1;
+		BinaryTreeNode<Integer> second = delta > 0 ? n1 : n2;
+		// bring both tree on the same height
+		second = goUpBy(second, Math.abs(delta));
+
+		// find the common ancester
+		while (!first.equals(second) && first != null && second != null) {
+			first = first.getParent();
+			second = second.getParent();
+		}
+
+		return first == null || second == null ? null : first;
+	}
+
+	// helper method to find the depth of a tree node
+	private int depth(BinaryTreeNode<Integer> root) {
+
+		int depth = 0;
+		while (root.getParent() != null) {
+			root = root.getParent();
+			depth++;
+		}
+
+		return depth;
+	}
+
+	// helper method to go up the nodes on a tree
+	public BinaryTreeNode<Integer> goUpBy(BinaryTreeNode<Integer> node, int delta) {
+
+		while (delta > 0) {
+			node = node.getParent();
+			delta--;
+		}
+
+		return node;
+	}
+
 }
