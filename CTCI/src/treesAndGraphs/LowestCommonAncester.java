@@ -162,10 +162,9 @@ public class LowestCommonAncester {
 	}
 
 	/*
-	 * common ancester soluion 3 without using the parent links this method checks
-	 * if both the nodes are on the same side on the root once we get to a root
-	 * where the other nodes are on the different subtrees, thats out common
-	 * ancester
+	 * common ancester soluion 3 without using the parent links. This method checks
+	 * if both the nodes are on the same side on the root(siblings) once we get to a
+	 * root where the nodes are on the different subtrees, thats our common ancester
 	 */
 	public BinaryTreeNode<Integer> commonAncester3(BinaryTreeNode<Integer> root, BinaryTreeNode<Integer> n1,
 			BinaryTreeNode<Integer> n2) {
@@ -190,5 +189,78 @@ public class LowestCommonAncester {
 		BinaryTreeNode<Integer> childNode = n1IsOnLeft ? root.getLeft() : root.getRight();
 
 		return commonAncester3(childNode, n1, n2);
+	}
+
+	/*
+	 * optimised method to find lowest common ancester. this method searches the
+	 * tree once recursively and bubbles up the results a boolean flag is used to
+	 * indicate if ancester is found or just one node is found
+	 */
+	public BinaryTreeNode<Integer> commonAncesterOptimised(BinaryTreeNode<Integer> root, BinaryTreeNode<Integer> n1,
+			BinaryTreeNode<Integer> n2) {
+
+		if (root == null) {
+			return null;
+		}
+
+		Result result = commonAncesterOptimisedHelper(root, n1, n2);
+		if (result.isAncester) {
+			return result.node;
+		}
+		return null;
+	}
+
+	private Result commonAncesterOptimisedHelper(BinaryTreeNode<Integer> root, BinaryTreeNode<Integer> n1,
+			BinaryTreeNode<Integer> n2) {
+
+		if (root == null) {
+			return new Result(null, false);
+		}
+
+		if (root.equals(n1) && root.equals(n2)) {
+			return new Result(root, true);
+		}
+
+		Result left = commonAncesterOptimisedHelper(root.getLeft(), n1, n2);
+		// ancester found!!
+		if (left.isAncester) {
+			return left;
+		}
+		Result right = commonAncesterOptimisedHelper(root.getRight(), n1, n2);
+		if (right.isAncester) {
+			return right;
+		}
+
+		// ancester found!!
+		if (left.node != null && right.node != null) {
+			return new Result(root, true);
+		}
+
+		// if one node is in the subtree of another node
+		if (root.equals(n1) || root.equals(n2)) {
+
+			boolean isAncester = left.node != null || right.node != null;
+			return new Result(root, isAncester);
+		}
+		// return the non null node with false flag
+		return new Result(left.node != null ? left.node : right.node, false);
+	}
+
+}
+
+/*
+ * wrapper class to return ancester and boolean in the optimised lowest common
+ * ancester method
+ * 
+ */
+class Result {
+
+	BinaryTreeNode<Integer> node;
+	boolean isAncester;
+
+	public Result(BinaryTreeNode<Integer> ancester, boolean isAncester) {
+
+		this.node = ancester;
+		this.isAncester = isAncester;
 	}
 }
