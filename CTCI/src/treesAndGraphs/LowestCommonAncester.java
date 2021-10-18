@@ -187,6 +187,8 @@ public class LowestCommonAncester {
 			return root;
 		}
 
-		return n1IsOnLeft ? root.getLeft() : root.getRight();
+		BinaryTreeNode<Integer> childNode = n1IsOnLeft ? root.getLeft() : root.getRight();
+
+		return commonAncester3(childNode, n1, n2);
 	}
 }
