@@ -1,5 +1,8 @@
 package treesAndGraphs;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /*
  * 4. 8 find the lowest common ancestor in 'Binary Tree'
  * 
@@ -244,6 +247,19 @@ public class LowestCommonAncester {
 		}
 		// return the non null node with false flag
 		return new Result(left.node != null ? left.node : right.node, false);
+	}
+
+	public static void main(String[] args) {
+		ArrayList<LinkedList<Integer>> result = new ArrayList<LinkedList<Integer>>();
+		LinkedList<Integer> test = new LinkedList<Integer>();
+		result.add(test);
+		test = new LinkedList<Integer>();
+		test.add(13);
+		result.add(test);
+
+		for (LinkedList<Integer> check : result) {
+			System.out.println("Hello");
+		}
 	}
 
 }
