@@ -1,4 +1,4 @@
 
 # CTCI
-Practice of Cracking the Coding Interview questions
+Cracking the Coding Interview - Practice
 
