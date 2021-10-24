@@ -1,6 +1,7 @@
 package treesAndGraphs;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,59 @@ public class RandomNodeTest {
 
 		found = node.find(node, 4);
 		assertEquals((Integer) 4, found.value);
+	}
+
+	@Test
+	public void deleteTest() {
+		node.printTree(node);
+		RNode found = node.delete(node, 4);
+		assertNull(found.right.right);
+
+		found = node.delete(node, 1);
+		assertEquals((Integer) 0, found.left.value);
+		assertNull(found.left.left);
+
+		found.insert(node, 10);
+		found.insert(node, 7);
+		found.insert(node, 6);
+		found.insert(node, 12);
+//		found.printTree(node);
+		found = node.delete(node, 10);
+		assertEquals((Integer) 7, found.right.right.value);
+//		found.printTree(node);
+
+		found = node.delete(node, 2);
+		assertEquals((Integer) 0, found.value);
+	}
+
+	@Test
+	public void insertInOrderTest() {
+
+		node = new RNode(2);
+		node.insertInOrder(node, 1);
+		node.insertInOrder(node, 3);
+		node.insertInOrder(node, 0);
+		node.insertInOrder(node, 4);
+
+		RNode found = node.find(node, 3);
+		assertEquals(2, found.size);
+		assertEquals((Integer) 4, found.right.value);
+		assertNull(found.left);
+
+		found = node.find(node, 1);
+		assertEquals(2, found.size);
+		assertEquals((Integer) 0, found.left.value);
+		assertNull(found.right);
+
+		found = node.find(node, 2);
+		assertEquals(5, found.size);
+		assertEquals((Integer) 3, found.right.value);
+		assertEquals((Integer) 1, found.left.value);
+
+		found = node.find(node, 0);
+		assertEquals(1, found.size);
+		assertEquals(null, found.left);
+		assertNull(found.right);
 	}
 
 }
