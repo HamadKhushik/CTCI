@@ -96,4 +96,21 @@ public class RandomNodeTest {
 		assertNull(found.right);
 	}
 
+	@Test
+	public void getRandomNodeTest() {
+
+		node = new RNode();
+		RNode node2 = new RNode();
+		node2.insertInOrder(node, 2);
+		node2.insertInOrder(node, 1);
+		node2.insertInOrder(node, 3);
+		node2.insertInOrder(node, 0);
+		node2.insertInOrder(node, 4);
+
+		for (int i = 0; i < 10; i++) {
+//			System.out.println(node.getRandomNode(node).value);
+		}
+
+	}
+
 }

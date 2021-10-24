@@ -1,5 +1,7 @@
 package treesAndGraphs;
 
+import java.util.Random;
+
 /*
  * 4.11 Random Node
  * Implement a Binary Search tree with insert, find and delete methods and 
@@ -142,9 +144,16 @@ class RNode {
 
 	/*
 	 * *****************************Book Solution*********************************
-	 * insertInOrder
+	 * insertInOrder updates the size of each subtree upon inserting a node
 	 */
 	public void insertInOrder(RNode root, int data) {
+
+		if (root == null) {
+			return;
+		} else if (root.value == null) {
+			root.value = data;
+			return;
+		}
 
 		if (data <= root.value) {
 			if (root.left == null) {
@@ -160,6 +169,25 @@ class RNode {
 			}
 		}
 		root.size++;
+	}
+
+	/*
+	 * get and returns a random node. every node has equal probability each node in
+	 * the tree has 1/n probability where 'n' is the number of nodes in the tree
+	 */
+	public RNode getRandomNode(RNode root) {
+
+		int leftSize = root.left == null ? 0 : root.left.size;
+		Random random = new Random();
+		int index = random.nextInt(root.size);
+
+		if (index < leftSize) {
+			return getRandomNode(root.left);
+		} else if (index == leftSize) {
+			return root;
+		} else {
+			return getRandomNode(root.right);
+		}
 	}
 
 	// helper method to print tree recursively
