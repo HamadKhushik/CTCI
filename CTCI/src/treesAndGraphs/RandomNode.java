@@ -33,46 +33,42 @@ class RNode {
 		right = null;
 	}
 
-	public void insert(RNode root, Integer data) {
+	public void insert(Integer data) {
 
-		if (data == null || root == null) {
+		if (data == null || this == null) {
 			return;
 		}
 
-		if (root.value == null) {
-			root.value = data;
+		if (this.value == null) {
+			this.value = data;
 			return;
 		}
 
-		if (data <= root.value && root.left != null) {
-			insert(root.left, data);
-		} else if (data < root.value && root.left == null) {
+		if (data <= this.value && this.left != null) {
+			this.left.insert(data);
+		} else if (data < this.value && this.left == null) {
 			RNode node = new RNode(data);
-			root.left = node;
+			this.left = node;
 			return;
 		}
 
-		if (data > root.value && root.right != null) {
-			insert(root.right, data);
-		} else if (data > root.value && root.right == null) {
+		if (data > this.value && this.right != null) {
+			this.right.insert(data);
+		} else if (data > this.value && this.right == null) {
 			RNode node = new RNode(data);
-			root.right = node;
+			this.right = node;
 		}
 	}
 
 	// in-order traversal to find the node
-	public RNode find(RNode root, int data) {
+	public RNode find(int data) {
 
-		if (root == null) {
-			return null;
-		}
-
-		if (root.value.equals(data)) {
-			return root;
-		} else if (data < root.value) {
-			return root.left != null ? find(root.left, data) : null;
-		} else if (data > root.value) {
-			return root.right != null ? find(root.right, data) : null;
+		if (this.value.equals(data)) {
+			return this;
+		} else if (data < this.value) {
+			return this.left != null ? this.left.find(data) : null;
+		} else if (data > this.value) {
+			return this.right != null ? this.right.find(data) : null;
 		}
 
 		return null;
@@ -84,35 +80,31 @@ class RNode {
 	 * child case-3 if node to be deleted has two children Ref:
 	 * https://www.youtube.com/watch?v=5_AZcOOc-kM
 	 */
-	public RNode delete(RNode node, int data) {
-
-		if (node == null) {
-			return null;
-		}
+	public RNode delete(int data) {
 
 		// if data is greater than node.value -> go to right subtree
-		if (data > node.value) {
-			node.right = delete(node.right, data);
+		if (data > this.value) {
+			this.right = this.right.delete(data);
 		}
 		// if data is less than node.value -> go to left subtree
-		else if (data < node.value) {
-			node.left = delete(node.left, data);
+		else if (data < this.value) {
+			this.left = this.left.delete(data);
 		}
 		// if data is equal to node.value -> there are three cases to be considered
 		else {
 
 			// if node has two children
-			if (node.left != null && node.right != null) {
-				int max = max(node.left); // find max in left sub-tree
-				node.value = max;
-				node.left = delete(node.left, max); // delete max in left subtree
-				return node;
+			if (this.left != null && this.right != null) {
+				int max = max(this.left); // find max in left sub-tree
+				this.value = max;
+				this.left = this.left.delete(max); // delete max in left subtree
+				return this;
 			}
 			// if node has only one child -> return the non null child
-			if (node.left != null && node.right == null) {
-				return node.left;
-			} else if (node.right != null && node.left == null) {
-				return node.right;
+			if (this.left != null && this.right == null) {
+				return this.left;
+			} else if (this.right != null && this.left == null) {
+				return this.right;
 			}
 			// if node has no children -> return null;
 			else {
@@ -120,7 +112,7 @@ class RNode {
 			}
 		}
 		// if node to be deleted is not in the tree
-		return node;
+		return this;
 	}
 
 	// helper method to find the max node in tree
@@ -135,59 +127,84 @@ class RNode {
 		}
 	}
 
-	// wrapper for print2DTree method
-	public void printTree(RNode root) {
-
-		print2DTree(root, 0);
-
-	}
-
 	/*
 	 * *****************************Book Solution*********************************
 	 * insertInOrder updates the size of each subtree upon inserting a node
 	 */
-	public void insertInOrder(RNode root, int data) {
+	public void insertInOrder(int data) {
 
-		if (root == null) {
-			return;
-		} else if (root.value == null) {
-			root.value = data;
+		if (this.value == null) {
+			this.value = data;
 			return;
 		}
 
-		if (data <= root.value) {
-			if (root.left == null) {
-				root.left = new RNode(data);
+		if (data <= this.value) {
+			if (this.left == null) {
+				this.left = new RNode(data);
 			} else {
-				insertInOrder(root.left, data);
+				this.left.insertInOrder(data);
 			}
 		} else {
-			if (root.right == null) {
-				root.right = new RNode(data);
+			if (this.right == null) {
+				this.right = new RNode(data);
 			} else {
-				insertInOrder(root.right, data);
+				this.right.insertInOrder(data);
 			}
 		}
-		root.size++;
+		this.size++;
 	}
 
 	/*
 	 * get and returns a random node. every node has equal probability each node in
 	 * the tree has 1/n probability where 'n' is the number of nodes in the tree
 	 */
-	public RNode getRandomNode(RNode root) {
+	public RNode getRandomNode() {
 
-		int leftSize = root.left == null ? 0 : root.left.size;
+		System.out.println("***********************************");
+
+		int leftSize = this.left == null ? 0 : this.left.size;
 		Random random = new Random();
-		int index = random.nextInt(root.size);
+		System.out.println("getRaandom: " + this.size);
+		int index = random.nextInt(this.size);
 
 		if (index < leftSize) {
-			return getRandomNode(root.left);
+			System.out.println("first if: " + index);
+			return this.left.getRandomNode();
 		} else if (index == leftSize) {
-			return root;
+			System.out.println("second if: " + index);
+			return this;
 		} else {
-			return getRandomNode(root.right);
+			System.out.println("third if: " + index);
+			return this.right.getRandomNode();
 		}
+	}
+
+	// get randmNode() with onl one call to random.nextInt()
+	public RNode randomNodeOptimised() {
+
+		int index = new Random().nextInt(this.size);
+
+		return getIthNode(index);
+	}
+
+	// returns the ith node in a Binary Tree
+	public RNode getIthNode(int i) {
+
+		int leftSize = this.left == null ? 0 : this.left.size;
+
+		if (i < leftSize) {
+			return this.left.getIthNode(i);
+		} else if (i == leftSize) {
+			return this;
+		} else {
+			return this.right.getIthNode(i - (leftSize + 1));
+		}
+	}
+
+	// wrapper for print2DTree method
+	public void printTree(RNode root) {
+
+		print2DTree(root, 0);
 	}
 
 	// helper method to print tree recursively

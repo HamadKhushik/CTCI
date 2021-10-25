@@ -14,11 +14,11 @@ public class RandomNodeTest {
 	@Before
 	public void setUp() throws Exception {
 
-		node.insert(node, 2);
-		node.insert(node, 1);
-		node.insert(node, 3);
-		node.insert(node, 0);
-		node.insert(node, 4);
+		node.insert(2);
+		node.insert(1);
+		node.insert(3);
+		node.insert(0);
+		node.insert(4);
 	}
 
 	@Test
@@ -33,36 +33,36 @@ public class RandomNodeTest {
 
 	@Test
 	public void findTest() {
-		RNode found = node.find(node, 3);
+		RNode found = node.find(3);
 		assertEquals((Integer) 3, found.value);
 
-		found = node.find(node, 0);
+		found = node.find(0);
 		assertEquals((Integer) 0, found.value);
 
-		found = node.find(node, 4);
+		found = node.find(4);
 		assertEquals((Integer) 4, found.value);
 	}
 
 	@Test
 	public void deleteTest() {
 		node.printTree(node);
-		RNode found = node.delete(node, 4);
+		RNode found = node.delete(4);
 		assertNull(found.right.right);
 
-		found = node.delete(node, 1);
+		found = node.delete(1);
 		assertEquals((Integer) 0, found.left.value);
 		assertNull(found.left.left);
 
-		found.insert(node, 10);
-		found.insert(node, 7);
-		found.insert(node, 6);
-		found.insert(node, 12);
+		found.insert(10);
+		found.insert(7);
+		found.insert(6);
+		found.insert(12);
 //		found.printTree(node);
-		found = node.delete(node, 10);
+		found = node.delete(10);
 		assertEquals((Integer) 7, found.right.right.value);
 //		found.printTree(node);
 
-		found = node.delete(node, 2);
+		found = node.delete(2);
 		assertEquals((Integer) 0, found.value);
 	}
 
@@ -70,27 +70,27 @@ public class RandomNodeTest {
 	public void insertInOrderTest() {
 
 		node = new RNode(2);
-		node.insertInOrder(node, 1);
-		node.insertInOrder(node, 3);
-		node.insertInOrder(node, 0);
-		node.insertInOrder(node, 4);
+		node.insertInOrder(1);
+		node.insertInOrder(3);
+		node.insertInOrder(0);
+		node.insertInOrder(4);
 
-		RNode found = node.find(node, 3);
+		RNode found = node.find(3);
 		assertEquals(2, found.size);
 		assertEquals((Integer) 4, found.right.value);
 		assertNull(found.left);
 
-		found = node.find(node, 1);
+		found = node.find(1);
 		assertEquals(2, found.size);
 		assertEquals((Integer) 0, found.left.value);
 		assertNull(found.right);
 
-		found = node.find(node, 2);
+		found = node.find(2);
 		assertEquals(5, found.size);
 		assertEquals((Integer) 3, found.right.value);
 		assertEquals((Integer) 1, found.left.value);
 
-		found = node.find(node, 0);
+		found = node.find(0);
 		assertEquals(1, found.size);
 		assertEquals(null, found.left);
 		assertNull(found.right);
@@ -101,15 +101,15 @@ public class RandomNodeTest {
 
 		node = new RNode();
 		RNode node2 = new RNode();
-		node2.insertInOrder(node, 2);
-		node2.insertInOrder(node, 1);
-		node2.insertInOrder(node, 3);
-		node2.insertInOrder(node, 0);
-		node2.insertInOrder(node, 4);
+		node2.insertInOrder(2);
+		node2.insertInOrder(1);
+		node2.insertInOrder(3);
+		node2.insertInOrder(0);
+		node2.insertInOrder(4);
 
-		for (int i = 0; i < 10; i++) {
-//			System.out.println(node.getRandomNode(node).value);
-		}
+		// for (int i = 0; i < 10; i++) {
+		System.out.println(node2.getRandomNode().value);
+		// }
 
 	}
 
