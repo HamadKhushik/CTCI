@@ -107,9 +107,27 @@ public class RandomNodeTest {
 		node2.insertInOrder(0);
 		node2.insertInOrder(4);
 
-		// for (int i = 0; i < 10; i++) {
-		System.out.println(node2.getRandomNode().value);
-		// }
+		for (int i = 0; i < 10; i++) {
+//			System.out.println(node2.getRandomNode().value);
+		}
+
+	}
+
+	@Test
+	public void getRandomNodeOptimisedTest() {
+
+		node = new RNode();
+		RNode node2 = new RNode();
+		node2.insertInOrder(2);
+		node2.insertInOrder(1);
+		node2.insertInOrder(3);
+		node2.insertInOrder(0);
+		node2.insertInOrder(4);
+
+		System.out.println("****************Optimised************************");
+		for (int i = 0; i < 10; i++) {
+//			System.out.println(node2.randomNodeOptimised().value);
+		}
 
 	}
 

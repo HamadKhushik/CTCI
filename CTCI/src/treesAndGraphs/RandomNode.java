@@ -160,21 +160,15 @@ class RNode {
 	 */
 	public RNode getRandomNode() {
 
-		System.out.println("***********************************");
-
 		int leftSize = this.left == null ? 0 : this.left.size;
 		Random random = new Random();
-		System.out.println("getRaandom: " + this.size);
 		int index = random.nextInt(this.size);
 
 		if (index < leftSize) {
-			System.out.println("first if: " + index);
 			return this.left.getRandomNode();
 		} else if (index == leftSize) {
-			System.out.println("second if: " + index);
 			return this;
 		} else {
-			System.out.println("third if: " + index);
 			return this.right.getRandomNode();
 		}
 	}
@@ -182,7 +176,7 @@ class RNode {
 	// get randmNode() with onl one call to random.nextInt()
 	public RNode randomNodeOptimised() {
 
-		int index = new Random().nextInt(this.size);
+		int index = new Random().nextInt(this.size + 1);
 
 		return getIthNode(index);
 	}
@@ -197,7 +191,8 @@ class RNode {
 		} else if (i == leftSize) {
 			return this;
 		} else {
-			return this.right.getIthNode(i - (leftSize + 1));
+			return this.right.getIthNode(i - (leftSize + 1)); // because we are skipping leftSize + 1(root) nodes while
+																// traversing right
 		}
 	}
 
