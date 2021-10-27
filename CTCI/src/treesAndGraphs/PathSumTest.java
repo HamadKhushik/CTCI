@@ -28,12 +28,22 @@ public class PathSumTest {
 	}
 
 	@Test
-	public void test() {
+	public void countPathWithSumTest() {
 
 		int sum = ps.countPathsWithSum(bt.getRoot(), 8);
 		assertEquals(3, sum);
 
 		sum = ps.countPathsWithSum(bt.getRoot(), 8);
+		assertEquals(3, sum);
+	}
+
+	@Test
+	public void countSumOptimisedTest() {
+
+		int sum = ps.countSumOptimised(bt.getRoot(), 8);
+		assertEquals(3, sum);
+
+		sum = ps.countSumOptimised(bt.getRoot(), 8);
 		assertEquals(3, sum);
 	}
 
