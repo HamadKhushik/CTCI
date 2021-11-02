@@ -176,7 +176,7 @@ class RNode {
 	// get randmNode() with onl one call to random.nextInt()
 	public RNode randomNodeOptimised() {
 
-		int index = new Random().nextInt(this.size + 1);
+		int index = new Random().nextInt(this.size);
 
 		return getIthNode(index);
 	}

@@ -3,6 +3,8 @@ package treesAndGraphs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -99,36 +101,64 @@ public class RandomNodeTest {
 	@Test
 	public void getRandomNodeTest() {
 
-		node = new RNode();
-		RNode node2 = new RNode();
-		node2.insertInOrder(2);
+		RNode node2 = new RNode(2);
 		node2.insertInOrder(1);
 		node2.insertInOrder(3);
 		node2.insertInOrder(0);
 		node2.insertInOrder(4);
 
-		for (int i = 0; i < 10; i++) {
-//			System.out.println(node2.getRandomNode().value);
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < 5; i++) {
+			map.put(i, 0);
 		}
-
+		for (int i = 0; i < 1000; i++) {
+			RNode node = node2.getRandomNode();
+			map.put(node.value, map.get(node.value) + 1);
+		}
+		for (int i = 0; i < 5; i++) {
+			System.out.println(i + ": " + map.get(i));
+		}
 	}
 
 	@Test
 	public void getRandomNodeOptimisedTest() {
 
-		node = new RNode();
-		RNode node2 = new RNode();
-		node2.insertInOrder(2);
+		RNode node2 = new RNode(2);
+//		node2.insertInOrder(2);
 		node2.insertInOrder(1);
 		node2.insertInOrder(3);
 		node2.insertInOrder(0);
 		node2.insertInOrder(4);
 
 		System.out.println("****************Optimised************************");
-		for (int i = 0; i < 10; i++) {
-//			System.out.println(node2.randomNodeOptimised().value);
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < 5; i++) {
+			map.put(i, 0);
 		}
-
+		for (int i = 0; i < 1000; i++) {
+			RNode node = node2.randomNodeOptimised();
+//			System.out.println(node.value + " size " + node.size);
+			switch (node.value) {
+			case 0:
+				map.put(0, (map.get(0)) + 1);
+				break;
+			case 1:
+				map.put(1, (map.get(1)) + 1);
+				break;
+			case 2:
+				map.put(2, (map.get(2)) + 1);
+				break;
+			case 3:
+				map.put(3, (map.get(3)) + 1);
+				break;
+			case 4:
+				map.put(4, (map.get(4)) + 1);
+				break;
+			}
+		}
+		for (int i = 0; i < 5; i++) {
+			System.out.println(i + ": " + map.get(i));
+		}
 	}
 
 }
