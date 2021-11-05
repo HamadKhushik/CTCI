@@ -8,7 +8,9 @@ import java.util.Random;
  * also implement a find random node. All nodes should be equally likely to be chosen
  */
 public class RandomNode {
-
+	public static void main(String[] args) {
+		System.out.println(2 % 1);
+	}
 }
 
 class RNode {
@@ -224,5 +226,4 @@ class RNode {
 		// left child
 		print2DTree(root.left, space);
 	}
-
 }
