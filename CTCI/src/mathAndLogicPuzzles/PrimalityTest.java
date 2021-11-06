@@ -36,5 +36,4 @@ public class PrimalityTest {
 		assertEquals(false, prime.sieveOfEratosthenes(7)[6]);
 		assertEquals(true, prime.sieveOfEratosthenes(7)[5]);
 	}
-
 }
