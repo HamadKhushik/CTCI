@@ -34,5 +34,4 @@ public class EggDrop {
 		// return -1 if egg did not break
 		return egg2 > floors ? -1 : egg2;
 	}
-
 }
