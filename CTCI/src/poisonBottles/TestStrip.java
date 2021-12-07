@@ -16,7 +16,10 @@ public class TestStrip {
 		return this.id;
 	}
 
-	// increase the size of dropsByDay to number of days
+	/*
+	 * increase the size of dropsByDay to number of days add list of bottles for the
+	 * day/days
+	 */
 	private void sizeDropsForDay(int day) {
 
 		while (dropsByDay.size() <= day) {
@@ -24,7 +27,10 @@ public class TestStrip {
 		}
 	}
 
-	// add drops from bottle on specific day
+	/*
+	 * add drops from bottle on specific day add drops from given bottle on a
+	 * specific day
+	 */
 	public void addDropsFromBottle(int day, Bottle bottle) {
 
 		sizeDropsForDay(day);

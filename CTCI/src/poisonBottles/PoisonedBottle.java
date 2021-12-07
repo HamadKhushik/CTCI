@@ -28,7 +28,7 @@ public class PoisonedBottle {
 			}
 		}
 		if (bottles.size() == 1) {
-			return bottles.get(0);
+			return bottles.get(0).getId();
 		} else {
 			return -1;
 		}
@@ -44,5 +44,4 @@ public class PoisonedBottle {
 			index = (index + 1) % strips.size();
 		}
 	}
-
 }
