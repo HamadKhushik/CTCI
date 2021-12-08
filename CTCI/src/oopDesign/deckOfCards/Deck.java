@@ -25,8 +25,8 @@ public class Deck<T extends Card> {
 			T card1 = cards.get(i);
 			T card2 = cards.get(j);
 
-			cards.add(i, card1);
-			cards.add(j, card2);
+			cards.add(i, card2);
+			cards.add(j, card1);
 		}
 	}
 

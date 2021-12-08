@@ -20,5 +20,4 @@ public enum Suit {
 	public Suit getSuit(int value) {
 		return Suit.values()[value];
 	}
-
 }
