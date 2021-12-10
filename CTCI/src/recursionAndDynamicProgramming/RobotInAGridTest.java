@@ -3,8 +3,6 @@
  */
 package recursionAndDynamicProgramming;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,8 +23,17 @@ public class RobotInAGridTest {
 	}
 
 	@Test
-	public void findPathTest() {
-		assertEquals(6, test.findPaths(3, 3));
+	public void findPathsTest() {
+		System.out.println("findPaths() TEST");
+		test.findPaths(row, column);
+		System.out.println("************************************\n");
+	}
+
+	@Test
+	public void findPathsDynamicProgrammingTest() {
+		System.out.println("findPathsDynamicProgramming() TEST");
+		test.findPathsDynamicProgramming(row, column);
+		System.out.println("************************************\n");
 	}
 
 }
