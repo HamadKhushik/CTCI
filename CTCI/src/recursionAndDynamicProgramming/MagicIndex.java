@@ -89,6 +89,5 @@ public class MagicIndex {
 
 		// if magic Index is not on left, return whatever is found on right
 		return right;
-
 	}
 }
