@@ -76,7 +76,7 @@ public class RecursiveMultiplication {
 
 	/*
 	 * simple recursive approach 30 * 45 = 2 * (15 * 45). when odd number eg: 31 *
-	 * 45 = 2 * (15 * 45 ) + 45 no need to cache results
+	 * 45 = 2 * (15 * 45 ) + 45. No need to cache results. O(n) = log(smaller)
 	 */
 	public int minProduct3(int a, int b) {
 
