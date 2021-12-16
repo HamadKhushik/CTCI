@@ -20,6 +20,9 @@ public class PermutationsWithDuplicates {
 	// only evaluates unique permutations of a String
 	public ArrayList<String> printPerms(String str) {
 
+		if (str == null) {
+			return null;
+		}
 		ArrayList<String> result = new ArrayList<String>();
 		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 		buildHashMap(str, map);
