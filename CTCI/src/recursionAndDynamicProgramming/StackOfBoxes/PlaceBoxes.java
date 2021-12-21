@@ -129,5 +129,4 @@ public class PlaceBoxes {
 		// return the maximum height
 		return Math.max(heightWithNewBottom, heightWithoutNewBottom);
 	}
-
 }
