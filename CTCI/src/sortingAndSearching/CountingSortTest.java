@@ -24,7 +24,7 @@ public class CountingSortTest {
 	@Test
 	public void test() {
 		CountSort.countSort(array, 1);
-		// Assert.assertArrayEquals(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, array);
+		Assert.assertArrayEquals(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, array);
 
 		CountSort.countSort(empty, 1);
 		Assert.assertArrayEquals(new int[] {}, empty);

@@ -35,7 +35,7 @@ public class CountSort {
 		}
 
 		// copy all elements of output[] to array[]
-		System.arraycopy(output, 0, array, 0, (n - 1));
+		System.arraycopy(output, 0, array, 0, n);
 	}
 
 }
