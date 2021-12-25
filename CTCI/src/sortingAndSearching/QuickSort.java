@@ -66,6 +66,7 @@ public class QuickSort {
 
 	private static void swap(int[] array, int left, int right) {
 
+//		Does not work when same elements are passed i-e left == right
 //		array[left] = array[left] + array[right];
 //		array[right] = array[left] - array[right];
 //		array[left] = array[left] - array[right];
@@ -73,5 +74,9 @@ public class QuickSort {
 		int temp = array[left];
 		array[left] = array[right];
 		array[right] = temp;
+	}
+
+	public static void main(String[] args) {
+		System.out.println((172) % 10);
 	}
 }
