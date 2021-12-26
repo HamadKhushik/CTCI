@@ -6,7 +6,8 @@ package sortingAndSearching;
 /**
  * Implementation of Radix Sort Algorithm. It doesnt use comparisons to sort,
  * rather it uses individual digits for sorting. It uses Counting sort algorithm
- * in its implementation
+ * in its implementation. Time Complexity = O(kn) where n is the number of
+ * elements and k is the number of passes of the sorting algorithm
  * 
  * @author Hammad: 26-Dec-2021
  */
