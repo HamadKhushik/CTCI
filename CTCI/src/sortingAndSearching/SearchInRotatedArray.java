@@ -7,8 +7,8 @@ package sortingAndSearching;
  * 10.3 search an element in a sorted array that has been rotated. solution is
  * based on a slight modification of Binary Search. time complexity is O(log n)
  * - if the all the elements in the array are unique. where 'n' is the number of
- * elements in the array, and O(n) if the array contains duplicated elements
- * because both right and left sub-arrays will need to be searched.
+ * elements in the array, and O(n) if the array contains lots of duplicated
+ * elements because both right and left sub-arrays will need to be searched.
  * 
  * @author Hammad: 28-Dec-2021
  */
