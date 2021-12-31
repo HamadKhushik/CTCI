@@ -20,4 +20,12 @@ public class MissingIntTest {
 		MissingInt.findMissing();
 	}
 
+	// Does not work!!
+	// @Test
+//	public void missingInt2Test() {
+//		int[] array = MissingInt.generateRandomArray();
+//		System.out.println(Arrays.toString(array));
+//		System.out.println(MissingInt.missingInt2(array));
+//	}
+
 }

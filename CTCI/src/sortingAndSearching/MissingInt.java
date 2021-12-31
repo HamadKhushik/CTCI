@@ -16,14 +16,15 @@ public class MissingInt {
 
 		int[] array = generateRandomArray();
 		int numberOfInts = 10;
-		byte[] bitVector = new byte[(int) (numberOfInts / 8) + 1];
+		byte[] bitVector = new byte[(int) (numberOfInts / 8) + 1]; // adding +1 since we are not allocating for all the
+																	// possible non-negative integers
 
 		int index = 0;
 
 		while (index < array.length) {
 
 			int n = array[index];
-			System.out.println(n);
+			System.out.print(n + " ");
 			bitVector[n / 8] |= 1 << (n % 8);
 			index++;
 		}
@@ -32,12 +33,30 @@ public class MissingInt {
 			for (int j = 0; j < 8; j++) {
 
 				if ((bitVector[i] & (1 << j)) == 0) {
-					System.out.println("Missing Number is: " + (i * 8 + j));
+					System.out.println("\n\nMissing Number is: " + (i * 8 + j));
 					return;
 				}
 			}
 		}
 		System.out.println("No Missing int found this time");
+	}
+
+	// solution using Abelion Group
+	// source:
+	// https://www.reddit.com/r/learnjava/comments/rroj2i/create_a_bit_vector_with_2_billion_bits/hqmcnz9/?context=3
+	public static int missingInt2(int[] array) {
+
+		if (array == null || array.length == 0) {
+			return -1;
+		}
+
+		int acc = 0;
+		int counter = 1;
+		for (int i : array) {
+			acc ^= counter ^ i;
+			counter++;
+		}
+		return acc ^ counter;
 	}
 
 	public static int[] generateRandomArray() {
@@ -48,5 +67,4 @@ public class MissingInt {
 		}
 		return array;
 	}
-
 }
