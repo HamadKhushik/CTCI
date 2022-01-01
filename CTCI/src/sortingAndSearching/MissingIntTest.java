@@ -3,6 +3,8 @@
  */
 package sortingAndSearching;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,15 +19,15 @@ public class MissingIntTest {
 
 	@Test
 	public void findMissingTest() {
-		MissingInt.findMissing();
+//		MissingInt.findMissing();
 	}
 
 	// Does not work!!
-	// @Test
-//	public void missingInt2Test() {
-//		int[] array = MissingInt.generateRandomArray();
-//		System.out.println(Arrays.toString(array));
-//		System.out.println(MissingInt.missingInt2(array));
-//	}
+	@Test
+	public void missingInt2Test() {
+		int[] array = MissingInt.generateRandomArray();
+		System.out.println(Arrays.toString(array));
+		System.out.println(MissingInt.missingInt2(array));
+	}
 
 }

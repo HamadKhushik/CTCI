@@ -51,12 +51,12 @@ public class MissingInt {
 		}
 
 		int acc = 0;
-		int counter = 1;
+		int counter = 2;
 		for (int i : array) {
 			acc ^= counter ^ i;
 			counter++;
 		}
-		return acc ^ counter;
+		return acc ^ counter ^ 1;
 	}
 
 	public static int[] generateRandomArray() {
