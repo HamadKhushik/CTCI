@@ -3,7 +3,10 @@
  */
 package sortingAndSearching;
 
-import java.util.Arrays;
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,15 +22,21 @@ public class MissingIntTest {
 
 	@Test
 	public void findMissingTest() {
-//		MissingInt.findMissing();
+		MissingInt.findMissing(10);
+	}
+
+	@Test
+	public void findMissing3Test() throws FileNotFoundException {
+		int missing = MissingInt.findMissing(new File("data/input2.txt"));
+		assertEquals(7, missing);
 	}
 
 	// Does not work!!
-	@Test
-	public void missingInt2Test() {
-		int[] array = MissingInt.generateRandomArray();
-		System.out.println(Arrays.toString(array));
-		System.out.println(MissingInt.missingInt2(array));
-	}
+//	@Test
+//	public void missingInt2Test() {
+//		int[] array = MissingInt.generateRandomArray();
+//		System.out.println(Arrays.toString(array));
+//		System.out.println(MissingInt.missingInt2(array));
+//	}
 
 }
