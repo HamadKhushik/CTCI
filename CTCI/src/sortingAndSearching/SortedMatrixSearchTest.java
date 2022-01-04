@@ -8,6 +8,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import sortingAndSearching.sortedMatrixSearch.Coordinate;
+import sortingAndSearching.sortedMatrixSearch.SortedMatrixSearch;
+
 /**
  * @author Hammad: 03-Jan-2022
  */
@@ -20,7 +23,7 @@ public class SortedMatrixSearchTest {
 	}
 
 	@Test
-	public void test() {
+	public void naiveTest() {
 		assertEquals(true, SortedMatrixSearch.naiveFind(matrix, 55));
 
 		assertEquals(true, SortedMatrixSearch.naiveFind(matrix, 105));
@@ -28,6 +31,19 @@ public class SortedMatrixSearchTest {
 		assertEquals(false, SortedMatrixSearch.naiveFind(matrix, 25));
 
 		assertEquals(false, SortedMatrixSearch.naiveFind(matrix, 5));
+	}
+
+	@Test
+	public void findTest() {
+		assertEquals(new Coordinate(2, 1), SortedMatrixSearch.find(matrix, 55));
+
+		assertEquals(new Coordinate(2, 3), SortedMatrixSearch.find(matrix, 105));
+
+		assertEquals(new Coordinate(0, 3), SortedMatrixSearch.find(matrix, 85));
+
+		assertEquals(null, SortedMatrixSearch.find(matrix, 25));
+
+		assertEquals(null, SortedMatrixSearch.find(matrix, 5));
 	}
 
 }
