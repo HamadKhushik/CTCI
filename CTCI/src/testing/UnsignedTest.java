@@ -11,7 +11,7 @@ package testing;
 public class UnsignedTest {
 
 	public static void check() {
-		Unsigned int i;
+		int i;
 	}
 
 }
