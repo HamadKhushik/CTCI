@@ -4,6 +4,8 @@
 package lambdaExpressions;
 
 /**
+ * ref : https://www.youtube.com/watch?v=XQL7sPs-FuI
+ * 
  * @author Hammad: 08-Jan-2022
  */
 public class Greeter {
