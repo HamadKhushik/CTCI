@@ -7,38 +7,38 @@ package objectOrientedDesign.libraryManagementSystem;
  */
 public enum BookFormat {
 
-	Hardcover,
-	Paperback,
-	Audiobook,
-	Ebook,
-	Journal,
-	NewsPaper
+	HAARDCOVER,
+	PAPERBACK,
+	AUDIOBOOK,
+	EBOOK,
+	JOURNAL,
+	NEWSPAPER
 }
 
 enum BookStatus {
 
-	Availble,
-	Reserved,
-	Checkedout,
-	Lost
+	AVAILABLE,
+	RESERVED,
+	LOANED,
+	LOST
 }
 
 enum ReservationStatus {
 
-	Waiting,
-	Completed,
-	Pending,
-	Canceled,
-	None
+	WAITING,
+	COMPLETED,
+	PENDING,
+	CANCELLED,
+	NONE
 }
 
 enum AccountStatus {
 
-	Active,
-	Closed,
-	Cancelled,
-	Blacklisted,
-	None
+	ACTIVE,
+	CLOSED,
+	CANCELLED,
+	BLACKLISTED,
+	NONE
 }
 
 class Address {
@@ -55,4 +55,10 @@ class Person {
 	Address address;
 	String email;
 	String phone;
+}
+
+class Constants {
+
+	public static final int MAX_BOOKS_ISSUED_TO_A_USER = 5;
+	public static final int MAX_LENDING_DAYS = 10;
 }
