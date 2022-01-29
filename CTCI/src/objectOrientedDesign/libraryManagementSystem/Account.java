@@ -10,6 +10,9 @@ public abstract class Account {
 	AccountStatus status;
 	Person person;
 
-	public boolean resetPassword();
+	public boolean resetPassword() {
+		System.out.println("returning false from resetPassword() in Account class!");
+		return false;
+	}
 
 }
