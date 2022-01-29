@@ -8,7 +8,7 @@ package objectOrientedDesign.parkingLot;
  * 
  * @author Hammad: 29-Jan-2022
  */
-public class Account {
+public abstract class Account {
 
 	private String userName;
 	private String password;
