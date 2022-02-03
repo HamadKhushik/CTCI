@@ -4,3 +4,4 @@ Working through library managenemt system in the course
 
 
 working on week 2 of Object Oriented design from Alberta on coursera
+made some progress on week 3 of the course, topics include design principles, Generalisation principles and Modelling Behaviour
