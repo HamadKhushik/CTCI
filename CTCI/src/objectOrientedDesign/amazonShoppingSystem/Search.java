@@ -9,9 +9,9 @@ import java.util.List;
  * @author Hammad: 07-Feb-2022
  */
 public interface Search {
-	public List<Product> searchProductByName();
+	public List<Product> searchProductByName(String name);
 
-	public List<Product> searchProductByCategory();
+	public List<Product> searchProductByCategory(String category);
 }
 
 class Catalogue implements Search {
@@ -25,5 +25,4 @@ class Catalogue implements Search {
 	public List<Product> searchProductByCategory(String category) {
 		return productCategories.get(category);
 	}
-
 }
