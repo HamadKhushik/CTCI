@@ -24,11 +24,13 @@ public abstract class ParkingSpot {
 	public boolean assignVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 		free = false;
+		return true;
 	}
 
 	public boolean removeVehicle() {
 		this.vehicle = null;
 		free = true;
+		return true;
 	}
 
 	public ParkingSpotType getType() {

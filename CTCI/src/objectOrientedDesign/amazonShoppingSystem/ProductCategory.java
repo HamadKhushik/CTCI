@@ -18,5 +18,21 @@ class ProductReview {
 }
 
 class Product {
+	private String productId;
+	private String name;
+	private String descriprion;
+	private double price;
+	private int availableCount;
+	private ProductCategory category;
 
+	private Account seller;
+
+	public int getAvailableCount() {
+		return availableCount;
+	}
+
+	public boolean updatePrice() {
+		System.out.println("Returning false from updatePrice() in Product class");
+		return false;
+	}
 }

@@ -82,7 +82,7 @@ public class ParkingFloor {
 			// find another free handicapped spot and assign it to diaplayBoard
 			for (String key : compactSpots.keySet()) {
 				if (compactSpots.get(key).isFree()) {
-					this.displayBoard.setHandicappedFreeSpot(compactSpots.get(key));
+					this.displayBoard.setHandicappedFreeSpot(handicappedSpots.get(key));
 				}
 			}
 			this.displayBoard.showEmptySpotNumber();
@@ -118,7 +118,7 @@ public class ParkingFloor {
 			// find another free handicapped spot and assign it to diaplayBoard
 			for (String key : electricSpots.keySet()) {
 				if (electricSpots.get(key).isFree()) {
-					this.displayBoard.setelectricFreeSpot(electricSpots.get(key));
+					this.displayBoard.setElectricFreeSpot(electricSpots.get(key));
 				}
 			}
 			this.displayBoard.showEmptySpotNumber();

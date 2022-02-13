@@ -45,5 +45,75 @@ public class ParkingLot {
 
 	// following method is synchronised to allow multiple entrances to issue the
 	// parking ticket without interfering with each other
+	public synchronized ParkingTicket getNewParkingTicket(Vehicle vehicle) throws ParkingFullException {
+		if (this.isFull(vehicle.getType())) {
+			throw new ParkingFullException();
+		}
+		ParkingTicket ticket = new ParkingTicket();
+		vehicle.assignParkingTicket(ticket);
+		ticket.saveInDB();
+		// if ticket is successfully saved in DB, increment the parking spot count
+		this.incrementSpotCount(vehicle.getType());
+		this.activeTickets.put(ticket.getTicketNumber(), ticket);
+		return ticket;
+	}
+
+	public boolean isFull(VehicleType type) {
+		if (type == VehicleType.TRUCK || type == VehicleType.VAN) {
+			return largeSpotCount >= maxLargeCount;
+		}
+
+		if (type == VehicleType.MOTORBIKE) {
+			return motorbikeSpotCount >= maxMotorbikeCount;
+		}
+
+		if (type == VehicleType.CAR) {
+			return (compactSpotCount + largeSpotCount + electricSpotCount) >= (maxCompactCount + maxLargeCount
+					+ maxElectricCount);
+		}
+	}
+
+	public boolean isFull() {
+		for (String key : parkingFloors.keySet()) {
+			if (!parkingFloors.get(key).isFull()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean incrementSpotCount(VehicleType type) {
+		if (type == VehicleType.TRUCK || type == VehicleType.VAN) {
+			largeSpotCount++;
+		} else if (type == VehicleType.MOTORBIKE) {
+			motorbikeSpotCount++;
+		} else if (type == VehicleType.CAR) {
+			if (compactSpotCount < maxCompactCount) {
+				compactSpotCount++;
+			} else {
+				largeSpotCount++;
+			}
+		} else { // electric car
+			if (electricSpotCount < maxElectricCount) {
+				electricSpotCount++;
+			} else if (compactSpotCount < maxCompactCount) {
+				compactSpotCount++;
+			} else {
+				largeSpotCount++;
+			}
+		}
+	}
+
+	public void addParkingFloor(ParkingFloor parkingFloor) {
+		/* store in DB */
+	}
+
+	public void addEntrancePanel(EntrancePanel entrancePanel) {
+		/* store in DB */
+	}
+
+	public void addExitPanel(ExitPanel exitPanel) {
+		/* store in DB */
+	}
 
 }

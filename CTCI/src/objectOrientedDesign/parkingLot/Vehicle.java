@@ -18,6 +18,11 @@ public abstract class Vehicle {
 	public void assignParkingTicket(ParkingTicket ticket) {
 		this.ticket = ticket;
 	}
+
+	public VehicleType getType() {
+		return type;
+	}
+
 }
 
 class Car extends Vehicle {
