@@ -9,3 +9,4 @@ made some progress on week 3 of the course, topics include design principles, Ge
 Started the course Master Object Oriented Design on Udemy By Imtiaz Ahmed
 
 Started working through the SQL course by freecodecamp on Youtube - created AWS account
+installed PopSql and MySQL and started working through basic queries 
