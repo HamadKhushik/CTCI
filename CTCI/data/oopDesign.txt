@@ -12,3 +12,4 @@ Started working through the SQL course by freecodecamp on Youtube - created AWS 
 installed PopSql and MySQL and started working through basic queries 
 Working through Crud operations 
 Learned different ways to querry a database including DISTINCT, LIMIT
+Learned SQL functions and Joins
