@@ -11,5 +11,6 @@ Started the course Master Object Oriented Design on Udemy By Imtiaz Ahmed
 Started working through the SQL course by freecodecamp on Youtube - created AWS account
 installed PopSql and MySQL and started working through basic queries 
 Working through Crud operations 
-Learned different ways to querry a database including DISTINCT, LIMIT
+Learned different ways to query a database including DISTINCT, LIMIT
 Learned SQL functions and Joins
+Working on AWS mysql Linux intance
