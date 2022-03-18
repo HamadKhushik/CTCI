@@ -14,3 +14,4 @@ Working through Crud operations
 Learned different ways to query a database including DISTINCT, LIMIT
 Learned SQL functions and Joins
 Working on AWS mysql Linux intance
+Working on SQL on AWS
